@@ -32,22 +32,7 @@ public class ShotController : MonoBehaviour
             for (int i = 0; i < damage; i++)
             {
                 int randomIndex = Random.Range(0, bc.instructions.Count);
-                bc.instructions[randomIndex] = replaceInstruction;
-            }
-            //If the target has no more instructions,
-            bool instFound = false;
-            foreach (Instruction inst in bc.instructions)
-            {
-                if (inst.lifeInstruction)
-                {
-                    instFound = true;
-                    break;
-                }
-            }
-            if (!instFound)
-            {
-                //Destroy the target
-                bc.alive = false;
+                bc.destroyInstruction(randomIndex, replaceInstruction);
             }
             //Destroy shot
             Destroy(gameObject);

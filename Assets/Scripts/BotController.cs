@@ -6,38 +6,58 @@ public class BotController : MonoBehaviour
 {
 
     public List<Instruction> instructions;
-    public float turnDelay = 1;//seconds between turns
-    public bool alive = true;
 
-    private float lastTurnTime = 0;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    private Dictionary<int, Instruction> indicesToDestroy = new Dictionary<int, Instruction>();
 
     // Update is called once per frame
-    void Update()
+    public void takeTurn()
     {
-        if (Time.time > lastTurnTime + turnDelay)
+        for (int i = 0; i < instructions.Count; i++)
         {
-            lastTurnTime = Time.time;
-            for (int i = 0; i < instructions.Count; i++)
+            Instruction inst = instructions[i];
+            if (inst)
             {
-                Instruction inst = instructions[i];
-                if (inst)
+                inst.doAction(this, i, instructions);
+            }
+        }
+        //If there are instructions to destroy,
+        if (indicesToDestroy.Count > 0)
+        {
+            //Destroy them
+            //doing it at this spot in the code
+            //allows for simultaneous destruction
+            foreach (int index in indicesToDestroy.Keys)
+            {
+                instructions[index] = indicesToDestroy[index];
+            }
+            //If this bot has no more instructions,
+            bool instFound = false;
+            foreach (Instruction inst in instructions)
+            {
+                if (inst.lifeInstruction)
                 {
-                    inst.doAction(this, i, instructions);
+                    instFound = true;
+                    break;
                 }
             }
-            //If it has been destroyed,
-            if (!alive)
+            if (!instFound)
             {
-                //Destroy it
-                //this allows for simultaneous destruction
+                //Destroy this bot
                 Destroy(gameObject);
             }
+            indicesToDestroy.Clear();
+        }
+    }
+
+    public void destroyInstruction(int index, Instruction replacement)
+    {
+        if (indicesToDestroy.ContainsKey(index))
+        {
+            indicesToDestroy[index] = replacement;
+        }
+        else
+        {
+            indicesToDestroy.Add(index, replacement);
         }
     }
 }
