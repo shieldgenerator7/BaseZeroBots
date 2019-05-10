@@ -7,6 +7,7 @@ public class BotController : MonoBehaviour
 
     public List<Instruction> instructions;
     public float turnDelay = 1;//seconds between turns
+    public bool alive = true;
 
     private float lastTurnTime = 0;
 
@@ -25,7 +26,17 @@ public class BotController : MonoBehaviour
             for (int i = 0; i < instructions.Count; i++)
             {
                 Instruction inst = instructions[i];
-                inst.doAction(this, i, instructions);
+                if (inst)
+                {
+                    inst.doAction(this, i, instructions);
+                }
+            }
+            //If it has been destroyed,
+            if (!alive)
+            {
+                //Destroy it
+                //this allows for simultaneous destruction
+                Destroy(gameObject);
             }
         }
     }

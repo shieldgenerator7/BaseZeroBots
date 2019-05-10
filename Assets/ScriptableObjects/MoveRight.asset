@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: MoveRight
   m_EditorClassIdentifier: 
   symbol: {fileID: 0}
+  name: MoveRight
+  lifeInstruction: 1
   direction: 3

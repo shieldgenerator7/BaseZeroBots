@@ -28,11 +28,28 @@ public class ShotController : MonoBehaviour
         BotController bc = collision.gameObject.GetComponent<BotController>();
         if (bc)
         {
+            //Delete target instructions
             for (int i = 0; i < damage; i++)
             {
                 int randomIndex = Random.Range(0, bc.instructions.Count);
                 bc.instructions[randomIndex] = replaceInstruction;
             }
+            //If the target has no more instructions,
+            bool instFound = false;
+            foreach (Instruction inst in bc.instructions)
+            {
+                if (inst.lifeInstruction)
+                {
+                    instFound = true;
+                    break;
+                }
+            }
+            if (!instFound)
+            {
+                //Destroy the target
+                bc.alive = false;
+            }
+            //Destroy shot
             Destroy(gameObject);
         }
     }

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: MoveBackward
   m_EditorClassIdentifier: 
   symbol: {fileID: 0}
+  name: MoveBackward
+  lifeInstruction: 1
   direction: 1

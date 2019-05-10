@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: DoNothing
   m_EditorClassIdentifier: 
   symbol: {fileID: 0}
+  name: DoNothing
+  lifeInstruction: 0
