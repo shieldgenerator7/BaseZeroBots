@@ -10,7 +10,15 @@ public class Instruction : ScriptableObject
 
     public bool lifeInstruction = true;//true: this instruction allows for the bot to be alive
 
+    public bool command = true;//true: can be used as a command
+    public bool condition = true;//true: can be used as a condition
+
     public virtual void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
     {
+    }
+
+    public virtual bool testCondition(BotController bc, int currentIndex, List<Instruction> instructions)
+    {
+        return false;
     }
 }
