@@ -120,4 +120,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instructions: []
-  turnDelay: 1
+  alphabet:
+  - {fileID: 11400000, guid: 67595fd1f2ceac94597cfc2524baee8e, type: 2}
+  - {fileID: 11400000, guid: 8ecaded68008840489643e08e9eb4588, type: 2}
+  - {fileID: 11400000, guid: 1bc6e35d1c84e5141849f5789e290474, type: 2}
+  - {fileID: 11400000, guid: 3be7058e070397646bf062751d063bc5, type: 2}
+  - {fileID: 11400000, guid: 771d0f3db04fc4049a5fdc37eb024a2b, type: 2}
+  - {fileID: 11400000, guid: 433fc51fb86da4b42b54b73cb68d1eaf, type: 2}
+  - {fileID: 11400000, guid: 4c8cdb2f061bf994aabc3ef05c1c852e, type: 2}
+  - {fileID: 11400000, guid: ca931454a9012ec45b8ec13364c49f58, type: 2}
+  - {fileID: 11400000, guid: ddb93fd57c691244982275e18d8587bd, type: 2}
+  - {fileID: 11400000, guid: b9228f5c4e9d38f4c99d31d1fdeb2070, type: 2}
+  - {fileID: 11400000, guid: a0030026f2c0eb649b186e6db7c70c16, type: 2}
+  - {fileID: 11400000, guid: c0a15b4626e0ba14199f1d183c4eb4e9, type: 2}
+  - {fileID: 11400000, guid: 113f2b8331da3994e9f7c6f85542bf9b, type: 2}
+  - {fileID: 11400000, guid: 1f394421a459146468a112903d5950d2, type: 2}

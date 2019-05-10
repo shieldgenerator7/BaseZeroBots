@@ -10,6 +10,25 @@ public class Comparator : Instruction
     public bool greaterThan;
     public bool equalTo;
 
+    public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    {
+        //Can't compare if there's not enough instructions left
+        if (currentIndex >= instructions.Count - 4)
+        {
+            return;
+        }
+        if (testCondition(bc, currentIndex, instructions))
+        {
+            instructions[currentIndex + 3]
+                .doAction(bc, currentIndex + 3, instructions);
+        }
+        else
+        {
+            instructions[currentIndex + 4]
+                .doAction(bc, currentIndex + 4, instructions);
+        }
+    }
+
     public override bool testCondition(BotController bc, int currentIndex, List<Instruction> instructions)
     {
         //Can't compare if there's not enough instructions left

@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44beb9f5619e75648863c4f41a2e58f2, type: 3}
-  m_Name: CompeLessThanEqualTo
+  m_Name: CompareLessThan
   m_EditorClassIdentifier: 
   symbol: {fileID: 0}
-  name: CompeLessThanEqualTo
+  name: CompareLessThan
+  parameters: 5
   lifeInstruction: 0
   command: 0
   condition: 1
   lessThan: 1
   greaterThan: 0
-  equalTo: 1
+  equalTo: 0

@@ -13,12 +13,14 @@ public class BotController : MonoBehaviour
     // Update is called once per frame
     public void takeTurn()
     {
+        //Process instructions
         for (int i = 0; i < instructions.Count; i++)
         {
             Instruction inst = instructions[i];
             if (inst)
             {
                 inst.doAction(this, i, instructions);
+                i += inst.parameters - 1;
             }
         }
         //If there are instructions to destroy,

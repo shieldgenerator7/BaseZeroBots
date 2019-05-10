@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbol: {fileID: 0}
   name: MoveRight
+  parameters: 1
   lifeInstruction: 1
+  command: 1
+  condition: 1
   direction: 3

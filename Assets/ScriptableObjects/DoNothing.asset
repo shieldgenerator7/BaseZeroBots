@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbol: {fileID: 0}
   name: DoNothing
+  parameters: 1
   lifeInstruction: 0
   command: 0
   condition: 0
