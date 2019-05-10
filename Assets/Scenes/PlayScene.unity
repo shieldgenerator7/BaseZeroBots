@@ -232,13 +232,13 @@ PrefabInstance:
         type: 3}
       propertyPath: instructions.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 67595fd1f2ceac94597cfc2524baee8e,
+      objectReference: {fileID: 11400000, guid: 3be7058e070397646bf062751d063bc5,
         type: 2}
     - target: {fileID: 4861060286158962209, guid: 9aa05bc4381883540a5bf405f8992ce6,
         type: 3}
       propertyPath: instructions.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 4c8cdb2f061bf994aabc3ef05c1c852e,
+      objectReference: {fileID: 11400000, guid: ca931454a9012ec45b8ec13364c49f58,
         type: 2}
     - target: {fileID: 4861060286158962209, guid: 9aa05bc4381883540a5bf405f8992ce6,
         type: 3}
