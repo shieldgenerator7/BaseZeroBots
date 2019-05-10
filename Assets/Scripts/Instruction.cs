@@ -6,8 +6,8 @@ using UnityEngine;
 public class Instruction : ScriptableObject
 {
     public Sprite symbol;
-
-    public virtual void doAction(BotController bc, int currentIndex, List<Instruction> instructions) {
-        throw new System.NotImplementedException();
+    
+    public virtual void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    {
     }
 }
