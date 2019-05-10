@@ -15,4 +15,6 @@ MonoBehaviour:
   symbol: {fileID: 0}
   name: MoveLeft
   lifeInstruction: 1
+  command: 1
+  condition: 0
   direction: 2

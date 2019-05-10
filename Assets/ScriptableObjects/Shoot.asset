@@ -15,5 +15,7 @@ MonoBehaviour:
   symbol: {fileID: 0}
   name: Shoot
   lifeInstruction: 1
+  command: 1
+  condition: 1
   projectilePrefab: {fileID: 7480079205630337015, guid: 9a5604e7cdf5dc142939768d4c8d1d2b,
     type: 3}

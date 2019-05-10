@@ -15,4 +15,6 @@ MonoBehaviour:
   symbol: {fileID: 0}
   name: MoveForward
   lifeInstruction: 1
+  command: 1
+  condition: 1
   direction: 0
