@@ -6,6 +6,7 @@ public class BotController : MonoBehaviour
 {
 
     public List<Instruction> instructions;
+    public List<Instruction> alphabet;
 
     private Dictionary<int, Instruction> indicesToDestroy = new Dictionary<int, Instruction>();
 

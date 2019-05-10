@@ -21,4 +21,9 @@ public class Instruction : ScriptableObject
     {
         return false;
     }
+
+    public virtual int instructionToNumber(BotController bc, Instruction inst)
+    {
+        return bc.alphabet.IndexOf(inst);
+    }
 }

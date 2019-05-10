@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44beb9f5619e75648863c4f41a2e58f2, type: 3}
-  m_Name: CompeEqualTo 1
+  m_Name: CompeNotEqualTo
   m_EditorClassIdentifier: 
   symbol: {fileID: 0}
   name: CompeNotEqualTo
   lifeInstruction: 0
   command: 0
   condition: 1
-  comparison: 2
-  orEqualTo: 0
+  lessThan: 1
+  greaterThan: 1
+  equalTo: 0

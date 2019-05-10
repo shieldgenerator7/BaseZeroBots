@@ -17,5 +17,6 @@ MonoBehaviour:
   lifeInstruction: 0
   command: 0
   condition: 1
-  comparison: 0
-  orEqualTo: 1
+  lessThan: 1
+  greaterThan: 0
+  equalTo: 1
