@@ -24,6 +24,11 @@ public class MoveInDirection : Instruction
             case Direction.LEFT: pos.x -= 1; break;
             case Direction.RIGHT: pos.x += 1; break;
         }
-        bc.transform.localPosition += pos;
+        pos = bc.transform.TransformDirection(pos);
+        bc.transform.position = Vector3.MoveTowards(
+            bc.transform.position,
+            bc.transform.position + pos,
+            1
+            );
     }
 }

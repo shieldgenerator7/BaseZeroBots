@@ -142,4 +142,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  lifetime: 1
   replaceInstruction: {fileID: 11400000, guid: 4c8cdb2f061bf994aabc3ef05c1c852e, type: 2}
