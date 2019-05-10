@@ -12,7 +12,7 @@ public class Shoot : Instruction
     {
         GameObject projectile = Instantiate(projectilePrefab);
         projectile.transform.up = bc.transform.up;
-        projectile.transform.localPosition = bc.transform.localPosition + Vector3.up;
+        projectile.transform.localPosition = bc.transform.localPosition + bc.transform.up;
         projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up;
     }
 }
