@@ -10,10 +10,13 @@ public class BotController : MonoBehaviour
 
     private Dictionary<int, Instruction> indicesToDestroy = new Dictionary<int, Instruction>();
 
+    public Vector3 moveDirection = Vector3.zero;
+
     // Update is called once per frame
     public void takeTurn()
     {
         //Process instructions
+        moveDirection = Vector3.zero;
         for (int i = 0; i < instructions.Count; i++)
         {
             Instruction inst = instructions[i];
@@ -23,6 +26,10 @@ public class BotController : MonoBehaviour
                 i += inst.parameters - 1;
             }
         }
+        moveDirection.x = (moveDirection.x == 0) ? 0 : Mathf.Sign(moveDirection.x);
+        moveDirection.y = (moveDirection.y == 0) ? 0 : Mathf.Sign(moveDirection.y);
+        moveDirection = transform.TransformDirection(moveDirection);
+        transform.position = GridManager.moveObject(gameObject, transform.position + moveDirection);
         //If there are instructions to destroy,
         if (indicesToDestroy.Count > 0)
         {

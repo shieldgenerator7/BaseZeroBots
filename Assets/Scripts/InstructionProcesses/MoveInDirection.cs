@@ -24,7 +24,6 @@ public class MoveInDirection : Instruction
             case Direction.LEFT: pos.x -= 1; break;
             case Direction.RIGHT: pos.x += 1; break;
         }
-        pos = bc.transform.TransformDirection(pos);
-        bc.transform.position = GridManager.moveObject(bc.gameObject, bc.transform.position + pos);
+        bc.moveDirection += pos;
     }
 }
