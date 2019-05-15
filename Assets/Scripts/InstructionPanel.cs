@@ -19,6 +19,7 @@ public class InstructionPanel : MonoBehaviour
     public BotController target;
     public Instruction defaultInstruction;
     public GameObject instructionPrefab;
+    public GameObject cursorObject;
 
     [SerializeField]
     private int cursor = 0;//where the next letter is going to be
@@ -74,6 +75,14 @@ public class InstructionPanel : MonoBehaviour
         {
             Cursor++;
         }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Cursor -= dimension;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Cursor += dimension;
+        }
         updateDisplay();
     }
 
@@ -106,5 +115,6 @@ public class InstructionPanel : MonoBehaviour
             instSprites[i].sprite = target.instructions[i].symbol;
             instSprites[i].transform.position = indexToPos(i);
         }
+        cursorObject.transform.position = indexToPos(Cursor);
     }
 }
