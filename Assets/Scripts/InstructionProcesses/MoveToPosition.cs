@@ -7,8 +7,9 @@ public class MoveToPosition : Instruction
 {
     public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
     {
-        Vector2 position = getParameter(1, currentIndex, instructions).
-            instructionToVector2(bc, currentIndex + 1, instructions);
+        int param1 = getParameterIndex(1, currentIndex, instructions);
+        Vector2 position = instructions[param1].
+            instructionToPosition(bc, param1, instructions);
         bc.moveDirection = position - (Vector2)bc.transform.position;
     }
 }

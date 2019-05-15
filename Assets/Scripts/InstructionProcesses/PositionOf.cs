@@ -5,9 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PositionOf", menuName = "Instruction/PositionOf", order = 1)]
 public class PositionOf : Instruction
 {
-    public override Vector2 instructionToVector2(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override Vector2 instructionToPosition(BotController bc, int currentIndex, List<Instruction> instructions)
     {
-        return getParameter(1, currentIndex, instructions).
-            instructionToEntity(bc, currentIndex + 1, instructions).transform.position;
+        int param1 = getParameterIndex(1, currentIndex, instructions);
+        return instructions[param1].
+            instructionToEntity(bc, param1, instructions).transform.position;
     }
 }

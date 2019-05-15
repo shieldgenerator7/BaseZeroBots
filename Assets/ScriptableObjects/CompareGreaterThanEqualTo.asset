@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbol: {fileID: 21300000, guid: 073f09eaa6364ad498b36a4944cd4240, type: 3}
   name: CompareGreaterThanEqualTo
-  parameters: 5
+  parameters: 02000000020000000000000000000000
   keyCode: 108
   lifeInstruction: 0
-  command: 0
-  condition: 1
+  command: 1
+  returnType: 1
   lessThan: 0
   greaterThan: 1
   equalTo: 1

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbol: {fileID: 21300000, guid: 92512e15a995a67469e035e09ca73bca, type: 3}
   name: DoNothing
-  parameters: 1
-  keyCode: 9
+  parameters: 
+  keyCode: 8
   lifeInstruction: 0
   command: 0
-  condition: 0
+  returnType: 0

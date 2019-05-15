@@ -19,13 +19,15 @@ public class Comparator : Instruction
         }
         if (testCondition(bc, currentIndex, instructions))
         {
-            instructions[currentIndex + 3]
-                .doAction(bc, currentIndex + 3, instructions);
+            int param3 = getParameterIndex(3, currentIndex, instructions);
+            instructions[param3]
+                .doAction(bc, param3, instructions);
         }
         else
         {
-            instructions[currentIndex + 4]
-                .doAction(bc, currentIndex + 4, instructions);
+            int param4 = getParameterIndex(4, currentIndex, instructions);
+            instructions[param4]
+                .doAction(bc, param4, instructions);
         }
     }
 
@@ -37,8 +39,10 @@ public class Comparator : Instruction
             return false;
         }
         //Process the comparator
-        float and1 = instructions[currentIndex + 1].instructionToNumber(bc, currentIndex + 1, instructions);
-        float and2 = instructions[currentIndex + 2].instructionToNumber(bc, currentIndex + 2, instructions);
+        int param1 = getParameterIndex(1, currentIndex, instructions);
+        float and1 = instructions[param1].instructionToNumber(bc, param1, instructions);
+        int param2 = getParameterIndex(2, currentIndex, instructions);
+        float and2 = instructions[param2].instructionToNumber(bc, param2, instructions);
         if (lessThan)
         {
             if (and1 < and2)

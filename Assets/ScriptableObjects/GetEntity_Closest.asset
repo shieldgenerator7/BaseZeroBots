@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbol: {fileID: 21300000, guid: 66c201470d4fb8d4aa3bc4de536bfde8, type: 3}
   name: GetClosestEntity
-  parameters: 1
+  parameters: 
   keyCode: 99
   lifeInstruction: 1
   command: 0
-  query: 1
+  returnType: 4
   option: 0

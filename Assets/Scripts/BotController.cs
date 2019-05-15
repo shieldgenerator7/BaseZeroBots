@@ -17,13 +17,14 @@ public class BotController : MonoBehaviour
     {
         //Process instructions
         moveDirection = Vector3.zero;
-        for (int i = 0; i < instructions.Count; i++)
+        int i = 0;
+        while (i < instructions.Count)
         {
             Instruction inst = instructions[i];
             if (inst)
             {
                 inst.doAction(this, i, instructions);
-                i += inst.parameters - 1;
+                i = inst.getLastParameterIndex(i, instructions) + 1;
             }
         }
         moveDirection.x = (moveDirection.x == 0) ? 0 : Mathf.Sign(moveDirection.x);

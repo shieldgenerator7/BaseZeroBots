@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbol: {fileID: 21300000, guid: dd61d68560c255541822905d41585467, type: 3}
   name: MoveToPosition
-  parameters: 2
+  parameters: 03000000
   keyCode: 109
   lifeInstruction: 1
   command: 1
-  query: 0
+  returnType: 0

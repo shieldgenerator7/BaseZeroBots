@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbol: {fileID: 21300000, guid: 7f582d7802d9acc4b8e4aaaa22bd6634, type: 3}
   name: GetFurthestEntity
-  parameters: 1
+  parameters: 
   keyCode: 102
   lifeInstruction: 1
   command: 0
-  query: 1
+  returnType: 4
   option: 1

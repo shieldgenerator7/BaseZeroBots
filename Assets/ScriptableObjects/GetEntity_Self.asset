@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbol: {fileID: 21300000, guid: 2822143d31f83e74bb160469055113fc, type: 3}
   name: GetSelf
-  parameters: 1
+  parameters: 
   keyCode: 105
   lifeInstruction: 1
   command: 0
-  query: 1
+  returnType: 4
   option: 2
