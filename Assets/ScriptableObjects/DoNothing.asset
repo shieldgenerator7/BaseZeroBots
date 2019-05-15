@@ -15,6 +15,7 @@ MonoBehaviour:
   symbol: {fileID: 0}
   name: DoNothing
   parameters: 1
+  keyCode: 9
   lifeInstruction: 0
   command: 0
   condition: 0

@@ -8,6 +8,7 @@ public class Instruction : ScriptableObject
     public Sprite symbol;
     public new string name;
     public int parameters = 1;
+    public KeyCode keyCode;
 
     public bool lifeInstruction = true;//true: this instruction allows for the bot to be alive
 

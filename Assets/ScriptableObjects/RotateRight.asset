@@ -15,6 +15,7 @@ MonoBehaviour:
   symbol: {fileID: 0}
   name: RotateRight
   parameters: 1
+  keyCode: 101
   lifeInstruction: 1
   command: 1
   condition: 0

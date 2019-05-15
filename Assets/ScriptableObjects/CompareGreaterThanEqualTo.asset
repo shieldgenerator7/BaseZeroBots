@@ -15,6 +15,7 @@ MonoBehaviour:
   symbol: {fileID: 0}
   name: CompareGreaterThanEqualTo
   parameters: 5
+  keyCode: 108
   lifeInstruction: 0
   command: 0
   condition: 1

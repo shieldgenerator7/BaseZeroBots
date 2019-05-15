@@ -15,6 +15,7 @@ MonoBehaviour:
   symbol: {fileID: 0}
   name: CompareLessThan
   parameters: 5
+  keyCode: 60
   lifeInstruction: 0
   command: 0
   condition: 1
