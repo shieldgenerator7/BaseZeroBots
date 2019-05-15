@@ -8,6 +8,20 @@ public class TurnManager : MonoBehaviour
 
     private float lastTurnTime = 0;
 
+    private bool paused;
+    public bool Paused
+    {
+        get { return paused; }
+        set
+        {
+            paused = value;
+            if (!paused)
+            {
+                lastTurnTime = Time.time;
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +31,7 @@ public class TurnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > lastTurnTime + turnDelay)
+        if (!paused && Time.time > lastTurnTime + turnDelay)
         {
             lastTurnTime = Time.time;
             foreach(BotController bc in FindObjectsOfType<BotController>())

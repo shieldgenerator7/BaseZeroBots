@@ -23,6 +23,7 @@ public class InputManager : MonoBehaviour
                     break;
                 }
             }
+            FindObjectOfType<TurnManager>().Paused = instructionPanel.target != null;
         }
     }
 }
