@@ -194,6 +194,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6aabaf6345e4cc845a1e0aff759ec1e4, type: 2}
   - {fileID: 11400000, guid: 61f926b67e39be646917098ab7ad729b, type: 2}
   - {fileID: 11400000, guid: 1f1892b5f6c2c80439a89d8044e7f571, type: 2}
+  - {fileID: 11400000, guid: b9638618a32871546b39f37816bb67d5, type: 2}
   target: {fileID: 0}
   defaultInstruction: {fileID: 11400000, guid: 4c8cdb2f061bf994aabc3ef05c1c852e, type: 2}
   instructionPrefab: {fileID: 1361737343417213753, guid: fe1c0279b910e134fa586788fa055901,
