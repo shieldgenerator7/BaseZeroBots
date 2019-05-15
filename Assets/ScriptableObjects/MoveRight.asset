@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8448555670695564ebfc5e50457610c1, type: 3}
   m_Name: MoveRight
   m_EditorClassIdentifier: 
-  symbol: {fileID: 0}
+  symbol: {fileID: 21300000, guid: 0d184e95d9464894aad11b363f96900e, type: 3}
   name: MoveRight
   parameters: 1
   keyCode: 100

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcd41ae14a13c4429e82133d3fcb5f7, type: 3}
   m_Name: DoNothing
   m_EditorClassIdentifier: 
-  symbol: {fileID: 0}
+  symbol: {fileID: 21300000, guid: 92512e15a995a67469e035e09ca73bca, type: 3}
   name: DoNothing
   parameters: 1
   keyCode: 9

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e12c1ef9b1ce1c4499c7e675b4a5f21, type: 3}
   m_Name: Shoot
   m_EditorClassIdentifier: 
-  symbol: {fileID: 0}
+  symbol: {fileID: 21300000, guid: cb114de396b8aad4aac412c57f9cac37, type: 3}
   name: Shoot
   parameters: 1
   keyCode: 323

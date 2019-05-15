@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af2c6f8f2d323348bb73ab90b69a1e2, type: 3}
   m_Name: RotateLeft
   m_EditorClassIdentifier: 
-  symbol: {fileID: 0}
+  symbol: {fileID: 21300000, guid: f420af2afd6795f4984a8c99d091f9b7, type: 3}
   name: RotateLeft
   parameters: 1
   keyCode: 113

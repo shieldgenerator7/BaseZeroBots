@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44beb9f5619e75648863c4f41a2e58f2, type: 3}
   m_Name: CompareEqualTo
   m_EditorClassIdentifier: 
-  symbol: {fileID: 0}
+  symbol: {fileID: 21300000, guid: 1950b87a1b6a71a41b794255f60ba646, type: 3}
   name: CompareEqualTo
   parameters: 5
   keyCode: 61
