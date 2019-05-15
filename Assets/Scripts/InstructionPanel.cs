@@ -61,6 +61,29 @@ public class InstructionPanel : MonoBehaviour
         {
             Cursor += dimension;
         }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                //Shift it backward
+                Instruction first = target.instructions[0];
+                for (int i = 0; i < target.instructions.Count - 1; i++)
+                {
+                    target.instructions[i] = target.instructions[i + 1];
+                }
+                target.instructions[target.instructions.Count - 1] = first;
+            }
+            else
+            {
+                //Shift it forward
+                Instruction last = target.instructions[target.instructions.Count - 1];
+                for (int i = target.instructions.Count - 1; i > 0; i--)
+                {
+                    target.instructions[i] = target.instructions[i - 1];
+                }
+                target.instructions[0] = last;
+            }
+        }
         updateDisplay();
     }
 
@@ -114,7 +137,7 @@ public class InstructionPanel : MonoBehaviour
             //Initialize offset
             offset = Vector2.one * -Mathf.Floor(dimension / 2);
             //Initialize instSprites
-            while(instSprites.Count >= Size)
+            while (instSprites.Count >= Size)
             {
                 SpriteRenderer removeSR = instSprites[instSprites.Count - 1];
                 instSprites.Remove(removeSR);
