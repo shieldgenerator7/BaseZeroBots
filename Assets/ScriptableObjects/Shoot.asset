@@ -15,7 +15,7 @@ MonoBehaviour:
   symbol: {fileID: 21300000, guid: cb114de396b8aad4aac412c57f9cac37, type: 3}
   name: Shoot
   parameters: 1
-  keyCode: 323
+  keyCode: 32
   lifeInstruction: 1
   command: 1
   condition: 1

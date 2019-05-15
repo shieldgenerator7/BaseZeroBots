@@ -33,29 +33,7 @@ public class InstructionPanel : MonoBehaviour
     }
 
     public Vector2 offset;
-    private List<SpriteRenderer> instSprites;
-
-    private void OnEnable()
-    {
-        GetComponent<SpriteRenderer>().size = Vector2.one * dimension;
-        while (target.instructions.Count < Size)
-        {
-            target.instructions.Add(defaultInstruction);
-        }
-        //Initialize offset
-        offset = Vector2.one * -Mathf.Floor(dimension / 2);
-        //Initialize instSprites
-        instSprites = new List<SpriteRenderer>();
-        int i = 0;
-        while (instSprites.Count < Size)
-        {
-            GameObject instSprite = Instantiate(instructionPrefab);
-            instSprite.transform.parent = transform;
-            instSprites.Add(instSprite.GetComponent<SpriteRenderer>());
-            instSprite.transform.position = indexToPos(i);
-            i++;
-        }
-    }
+    private List<SpriteRenderer> instSprites = new List<SpriteRenderer>();
 
     private void Update()
     {
@@ -116,5 +94,41 @@ public class InstructionPanel : MonoBehaviour
             instSprites[i].transform.position = indexToPos(i);
         }
         cursorObject.transform.position = indexToPos(Cursor);
+    }
+
+    public void changeTarget(BotController bc)
+    {
+        target = bc;
+        if (bc == null)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+            GetComponent<SpriteRenderer>().size = Vector2.one * dimension;
+            while (target.instructions.Count < Size)
+            {
+                target.instructions.Add(defaultInstruction);
+            }
+            //Initialize offset
+            offset = Vector2.one * -Mathf.Floor(dimension / 2);
+            //Initialize instSprites
+            while(instSprites.Count >= Size)
+            {
+                SpriteRenderer removeSR = instSprites[instSprites.Count - 1];
+                instSprites.Remove(removeSR);
+                Destroy(removeSR.gameObject);
+            }
+            int i = 0;
+            while (instSprites.Count < Size)
+            {
+                GameObject instSprite = Instantiate(instructionPrefab);
+                instSprite.transform.parent = transform;
+                instSprites.Add(instSprite.GetComponent<SpriteRenderer>());
+                instSprite.transform.position = indexToPos(i);
+                i++;
+            }
+        }
     }
 }
