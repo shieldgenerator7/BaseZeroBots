@@ -5,6 +5,14 @@ using UnityEngine;
 public class InstructionPanel : MonoBehaviour
 {
     public int dimension = 5;//it's going to be a square, so this is the dimension of both height and width
+    public int Size
+    {
+        get { return dimension * dimension; }
+        set
+        {
+            dimension = Mathf.FloorToInt(Mathf.Sqrt(value));
+        }
+    }
 
     public List<Instruction> alphabet;
 
@@ -18,14 +26,14 @@ public class InstructionPanel : MonoBehaviour
         get { return cursor; }
         set
         {
-            cursor = (int)Mathf.Repeat(value, dimension * dimension);
+            cursor = (int)Mathf.Repeat(value, Size);
         }
     }
 
     private void OnEnable()
     {
         GetComponent<SpriteRenderer>().size = Vector2.one * dimension;
-        while (target.instructions.Count < dimension * dimension)
+        while (target.instructions.Count < Size)
         {
             target.instructions.Add(defaultInstruction);
         }
