@@ -35,9 +35,9 @@ public class Instruction : ScriptableObject
         return false;
     }
 
-    public virtual int instructionToNumber(BotController bc, Instruction inst)
+    public virtual float instructionToNumber(BotController bc, int currentIndex, List<Instruction> instructions)
     {
-        return bc.alphabet.IndexOf(inst);
+        return bc.alphabet.IndexOf(instructions[currentIndex]);
     }
 
     public virtual Vector2 instructionToVector2(BotController bc, int currentIndex, List<Instruction> instructions)

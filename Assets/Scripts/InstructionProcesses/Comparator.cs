@@ -37,8 +37,8 @@ public class Comparator : Instruction
             return false;
         }
         //Process the comparator
-        int and1 = instructions[currentIndex + 1].instructionToNumber(bc, instructions[currentIndex + 1]);
-        int and2 = instructions[currentIndex + 2].instructionToNumber(bc, instructions[currentIndex + 2]);
+        float and1 = instructions[currentIndex + 1].instructionToNumber(bc, currentIndex + 1, instructions);
+        float and2 = instructions[currentIndex + 2].instructionToNumber(bc, currentIndex + 2, instructions);
         if (lessThan)
         {
             if (and1 < and2)

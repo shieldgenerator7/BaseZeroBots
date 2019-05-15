@@ -8,12 +8,17 @@ public class GetEntity : Instruction
     public enum Option
     {
         CLOSEST,
-        FURTHEST
+        FURTHEST,
+        SELF
     }
     public Option option;
 
     public override BotController instructionToEntity(BotController bc, int currentIndex, List<Instruction> instructions)
     {
+        if (option == Option.SELF)
+        {
+            return bc;
+        }
         float extreme = (option == Option.CLOSEST) ? float.MaxValue : 0;
         BotController target = null;
         foreach (BotController fbc in FindObjectsOfType<BotController>())
