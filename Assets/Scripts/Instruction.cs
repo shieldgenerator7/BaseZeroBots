@@ -124,6 +124,25 @@ public class Instruction : ScriptableObject
     {
     }
 
+    public object getReturnObject(BotController bc, int currentIndex, List<Instruction> instructions)
+    {
+        switch (returnTypes[0])
+        {
+            case ReturnType.BOOL:
+                return testCondition(bc, currentIndex, instructions);
+            case ReturnType.NUMBER:
+                return instructionToNumber(bc, currentIndex, instructions);
+            case ReturnType.POSITION:
+                return instructionToPosition(bc, currentIndex, instructions);
+            case ReturnType.ENTITY:
+                return instructionToEntity(bc, currentIndex, instructions);
+            case ReturnType.OBJECT:
+                return instructionToObject(bc, currentIndex, instructions);
+            default:
+                return null;
+        }
+    }
+
     public virtual bool testCondition(BotController bc, int currentIndex, List<Instruction> instructions)
     {
         return false;

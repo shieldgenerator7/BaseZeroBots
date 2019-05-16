@@ -8,6 +8,8 @@ public class BotController : MonoBehaviour
     public List<Instruction> instructions;
     public List<Instruction> alphabet;
 
+    public Dictionary<int, object> memory = new Dictionary<int, object>();
+
     private Dictionary<int, Instruction> indicesToDestroy = new Dictionary<int, Instruction>();
 
     public Vector3 moveDirection = Vector3.zero;
