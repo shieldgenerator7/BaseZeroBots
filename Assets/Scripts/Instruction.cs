@@ -30,13 +30,27 @@ public class Instruction : ScriptableObject
     /// <returns></returns>
     public int getParameterIndex(int index, int currentIndex, List<Instruction> instructions)
     {
-        int paramIndex = (int)Mathf.Repeat(currentIndex + 1, instructions.Count);
-        for (int i = 1; i < index; i++)
+        int paramIndex = currentIndex + 1;
+        for(int i = 1; i < parameters.Count && i < index; i++)
         {
-            paramIndex = instructions[paramIndex].getLastParameterIndex(paramIndex, instructions) + 1;
-            paramIndex = (int)Mathf.Repeat(paramIndex, instructions.Count);
+            paramIndex = instructions[paramIndex].getLastParameterIndex(currentIndex, instructions);
+            paramIndex++;
         }
         return paramIndex;
+    public int[] getParameterIndices(int currentIndex, List<Instruction> instructions)
+    {
+        int[] paramIndices = new int[parameters.Count];
+        int paramIndex = currentIndex + 1;
+        for (int i = 0; i < parameters.Count; i++)
+        {
+            paramIndices[i] = paramIndex;
+            if (instructions[paramIndex].returnType == parameters[i])
+            {
+                paramIndex = instructions[paramIndex].getLastParameterIndex(paramIndex, instructions);
+            }
+            paramIndex++;
+        }
+        return paramIndices;
     }
 
     public int getLastParameterIndex(int currentIndex, List<Instruction> instructions)
@@ -48,13 +62,12 @@ public class Instruction : ScriptableObject
             if (instructions[lastIndex].returnType == parameters[i]
                 || parameters[i] == ReturnType.NONE)
             {
-                //lastIndex = instructions[lastIndex].getLastParameterIndex(lastIndex, instructions);
+                lastIndex = instructions[lastIndex].getLastParameterIndex(lastIndex, instructions);
             }
             lastIndex++;
         }
         lastIndex--;
         lastIndex = (int)Mathf.Repeat(lastIndex, instructions.Count);
-        Debug.Log("gLPI: cur: " + currentIndex + ", last: " + lastIndex + ", inst: " + name);
         return lastIndex;
     }
 
