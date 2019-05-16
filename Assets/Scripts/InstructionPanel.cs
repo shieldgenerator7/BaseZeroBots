@@ -10,7 +10,8 @@ public class InstructionPanel : MonoBehaviour
         get { return dimension * dimension; }
         set
         {
-            dimension = Mathf.FloorToInt(Mathf.Sqrt(value));
+            dimension = Mathf.CeilToInt(Mathf.Sqrt(value));
+            dimension = Mathf.Max(1, dimension);
         }
     }
 
@@ -188,6 +189,7 @@ public class InstructionPanel : MonoBehaviour
         else
         {
             gameObject.SetActive(true);
+            Size = target.instructions.Count;
             GetComponent<SpriteRenderer>().size = Vector2.one * dimension;
             while (target.instructions.Count < Size)
             {
