@@ -71,4 +71,18 @@ public class BotController : MonoBehaviour
             indicesToDestroy.Add(index, replacement);
         }
     }
+    
+    /// <summary>
+    /// Returns a list that shows how each instruction will be processed
+    /// </summary>
+    /// <returns></returns>
+    public Instruction.ProcessedAs[] getInstructionMap()
+    {
+        Instruction.ProcessedAs[] processMap = new Instruction.ProcessedAs[instructions.Count];
+        for (int i = 0; i < instructions.Count; i++)
+        {
+            instructions[i].getInstructionMap(i, instructions, ref processMap);
+        }
+        return processMap;
+    }
 }

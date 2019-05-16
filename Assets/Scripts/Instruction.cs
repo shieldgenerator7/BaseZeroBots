@@ -23,6 +23,14 @@ public class Instruction : ScriptableObject
     }
     public ReturnType returnType = ReturnType.NONE;
 
+    public enum ProcessedAs
+    {
+        DO_NOTHING,
+        COMMAND,
+        QUERY,
+        CONSTANT
+    }
+
     public int[] getParameterIndices(int currentIndex, List<Instruction> instructions)
     {
         int[] paramIndices = new int[parameters.Count];
@@ -56,6 +64,52 @@ public class Instruction : ScriptableObject
         lastIndex--;
         lastIndex = (int)Mathf.Repeat(lastIndex, instructions.Count);
         return lastIndex;
+    }
+
+    public ProcessedAs[] getInstructionMap(int currentIndex, List<Instruction> instructions, ref ProcessedAs[] processMap)
+    {
+        ProcessedAs currentPA = processMap[currentIndex];
+        if (currentPA == ProcessedAs.DO_NOTHING)
+        {
+            if (command)
+            {
+                currentPA = processMap[currentIndex] = ProcessedAs.COMMAND;
+            }
+            if (returnType != ReturnType.NONE)
+            {
+                currentPA = processMap[currentIndex] = ProcessedAs.QUERY;
+            }
+        }
+        int lastIndex = currentIndex + 1;
+        for (int i = 0; i < parameters.Count; i++)
+        {
+            if (lastIndex >= instructions.Count)
+            {
+                //don't re-paint-process the instructions at the beginning
+                break;
+            }
+            if (instructions[lastIndex].returnType == parameters[i]
+                || parameters[i] == ReturnType.NONE)
+            {
+                if (parameters[i] == ReturnType.NONE
+                    && instructions[lastIndex].command)
+                {
+                    processMap[lastIndex] = ProcessedAs.COMMAND;
+                }
+                else
+                {
+                    processMap[lastIndex] = ProcessedAs.QUERY;
+                }
+                lastIndex = instructions[lastIndex].getLastParameterIndex(lastIndex, instructions);
+            }
+            else
+            {
+                processMap[lastIndex] = ProcessedAs.CONSTANT;
+            }
+            lastIndex++;
+        }
+        lastIndex--;
+        return null;
     }
 
     public virtual void doAction(BotController bc, int currentIndex, List<Instruction> instructions)

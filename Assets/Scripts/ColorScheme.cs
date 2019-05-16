@@ -14,4 +14,21 @@ public class ColorScheme : ScriptableObject
     public Color queryColor = Color.white;
     public Color constantColor = Color.white;
     public Color doNothingColor = Color.white;
+
+    public Color getColor(Instruction.ProcessedAs pa)
+    {
+        switch (pa)
+        {
+            case Instruction.ProcessedAs.COMMAND:
+                return commandColor;
+            case Instruction.ProcessedAs.CONSTANT:
+                return constantColor;
+            case Instruction.ProcessedAs.DO_NOTHING:
+                return doNothingColor;
+            case Instruction.ProcessedAs.QUERY:
+                return queryColor;
+            default:
+                return doNothingColor;
+        }
+    }
 }

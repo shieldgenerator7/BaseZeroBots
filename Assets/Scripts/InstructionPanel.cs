@@ -116,23 +116,25 @@ public class InstructionPanel : MonoBehaviour
 
     private void updateDisplay()
     {
+        Instruction.ProcessedAs[] processMap = target.getInstructionMap();
         for (int i = 0; i < Size; i++)
         {
             instSprites[i].sprite = target.instructions[i].symbol;
             instSprites[i].transform.position = indexToPos(i);
+            instSprites[i].color = colorScheme.getColor(processMap[i]);
         }
         if (prevCursor != Cursor)
         {
             cursorObject.transform.position = indexToPos(Cursor);
             cursorObject.GetComponent<SpriteRenderer>().color = colorScheme.selectColor;
             //Highlight show parameters
-            foreach(GameObject go in highlightFrames)
+            foreach (GameObject go in highlightFrames)
             {
                 Destroy(go);
             }
             highlightFrames.Clear();
             int[] paramIndices = target.instructions[Cursor].getParameterIndices(Cursor, target.instructions);
-            for(int i = 0; i < paramIndices.Length; i++)
+            for (int i = 0; i < paramIndices.Length; i++)
             {
                 GameObject newHighlight = Instantiate(selectorPrefabSmall);
                 newHighlight.transform.position = indexToPos(paramIndices[i]);
