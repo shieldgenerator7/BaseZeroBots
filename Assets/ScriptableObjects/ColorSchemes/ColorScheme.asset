@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ColorScheme
   m_EditorClassIdentifier: 
   selectColor: {r: 1, g: 1, b: 1, a: 1}
-  parameterHighlightColor: {r: 0.9150943, g: 0.911923, b: 0.64315593, a: 1}
+  parameterHighlightColor: {r: 0.8962264, g: 0.8962264, b: 0, a: 1}
   commandColor: {r: 0.5921569, g: 1, b: 0, a: 1}
-  queryColor: {r: 0.47382993, g: 0.7924528, b: 0.011213934, a: 1}
-  constantColor: {r: 0.51936007, g: 0.6603774, b: 0.31461376, a: 1}
-  doNothingColor: {r: 0.33530614, g: 0.39649343, b: 0.5188679, a: 1}
+  queryColor: {r: 0.38738307, g: 0.49056602, b: 0.23834105, a: 1}
+  constantColor: {r: 0.8253827, g: 0.8301887, b: 0.81844074, a: 1}
+  doNothingColor: {r: 0.07956566, g: 0.090535834, b: 0.11320752, a: 1}
