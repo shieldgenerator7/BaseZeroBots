@@ -10,22 +10,22 @@ public class Comparator : Instruction
     public bool greaterThan;
     public bool equalTo;
 
-    public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
-    {
-        int[] paramIndices = getParameterIndices(currentIndex, instructions);
-        if (testCondition(bc, currentIndex, instructions))
-        {
-            int param3 = paramIndices[2];
-            instructions[param3]
-               .doAction(bc, param3, instructions);
-        }
-        else
-        {
-            int param4 = paramIndices[3];
-            instructions[param4]
-                .doAction(bc, param4, instructions);
-        }
-    }
+    //public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    //{
+    //    int[] paramIndices = getParameterIndices(currentIndex, instructions);
+    //    if (testCondition(bc, currentIndex, instructions))
+    //    {
+    //        int param3 = paramIndices[2];
+    //        instructions[param3]
+    //           .doAction(bc, param3, instructions);
+    //    }
+    //    else
+    //    {
+    //        int param4 = paramIndices[3];
+    //        instructions[param4]
+    //            .doAction(bc, param4, instructions);
+    //    }
+    //}
 
     public override bool testCondition(BotController bc, int currentIndex, List<Instruction> instructions)
     {

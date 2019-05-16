@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbol: {fileID: 21300000, guid: 073f09eaa6364ad498b36a4944cd4240, type: 3}
   name: CompareGreaterThanEqualTo
-  parameters: 02000000020000000000000000000000
+  parameters: 0200000002000000
   keyCode: 108
   lifeInstruction: 0
   command: 1

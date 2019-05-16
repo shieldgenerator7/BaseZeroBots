@@ -142,4 +142,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 61f926b67e39be646917098ab7ad729b, type: 2}
   - {fileID: 11400000, guid: 1f1892b5f6c2c80439a89d8044e7f571, type: 2}
   - {fileID: 11400000, guid: b9638618a32871546b39f37816bb67d5, type: 2}
+  - {fileID: 11400000, guid: 37f88b5b8c34d8645a81c08866db7952, type: 2}
   moveDirection: {x: 0, y: 0, z: 0}
