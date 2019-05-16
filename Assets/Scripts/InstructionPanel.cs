@@ -78,6 +78,7 @@ public class InstructionPanel : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
+                Cursor--;
                 //Shift it backward
                 Instruction first = target.instructions[0];
                 for (int i = 0; i < target.instructions.Count - 1; i++)
@@ -88,6 +89,7 @@ public class InstructionPanel : MonoBehaviour
             }
             else
             {
+                Cursor++;
                 //Shift it forward
                 Instruction last = target.instructions[target.instructions.Count - 1];
                 for (int i = target.instructions.Count - 1; i > 0; i--)
