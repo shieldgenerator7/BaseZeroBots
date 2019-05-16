@@ -20,6 +20,9 @@ public class InstructionPanel : MonoBehaviour
     public Instruction defaultInstruction;
     public GameObject instructionPrefab;
     public GameObject cursorObject;
+    public GameObject selectorPrefabSmall;
+
+    private List<GameObject> highlightFrames = new List<GameObject>();
 
     [SerializeField]
     private int cursor = 0;//where the next letter is going to be
@@ -31,6 +34,7 @@ public class InstructionPanel : MonoBehaviour
             cursor = (int)Mathf.Repeat(value, Size);
         }
     }
+    private int prevCursor = -1;
 
     public Vector2 offset;
     private List<SpriteRenderer> instSprites = new List<SpriteRenderer>();
@@ -116,7 +120,26 @@ public class InstructionPanel : MonoBehaviour
             instSprites[i].sprite = target.instructions[i].symbol;
             instSprites[i].transform.position = indexToPos(i);
         }
-        cursorObject.transform.position = indexToPos(Cursor);
+        if (prevCursor != Cursor)
+        {
+            cursorObject.transform.position = indexToPos(Cursor);
+            //Highlight show parameters
+            foreach(GameObject go in highlightFrames)
+            {
+                Destroy(go);
+            }
+            highlightFrames.Clear();
+            int[] paramIndices = target.instructions[Cursor].getParameterIndices(Cursor, target.instructions);
+            for(int i = 0; i < paramIndices.Length; i++)
+            {
+                GameObject newHighlight = Instantiate(selectorPrefabSmall);
+                newHighlight.GetComponent<SpriteRenderer>().color = Color.yellow;
+                newHighlight.transform.position = indexToPos(paramIndices[i]);
+                highlightFrames.Add(newHighlight);
+            }
+            //Update prev cursor
+            prevCursor = cursor;
+        }
     }
 
     public void changeTarget(BotController bc)

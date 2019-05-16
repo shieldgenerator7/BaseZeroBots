@@ -201,5 +201,7 @@ MonoBehaviour:
   instructionPrefab: {fileID: 1361737343417213753, guid: fe1c0279b910e134fa586788fa055901,
     type: 3}
   cursorObject: {fileID: 6001290477194850147}
+  selectorPrefabSmall: {fileID: 5991760261861656441, guid: 8fe043f3e6f00624f8d8f151a51ae1fe,
+    type: 3}
   cursor: 0
   offset: {x: 0, y: 0}
