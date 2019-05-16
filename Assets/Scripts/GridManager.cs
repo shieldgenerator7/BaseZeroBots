@@ -37,4 +37,8 @@ public class GridManager : MonoBehaviour
         return oldPos;
     }
     
+    public static GameObject objectAtPosition(Vector2 pos)
+    {
+        return grid[(int)pos.x, (int)pos.y];
+    }
 }

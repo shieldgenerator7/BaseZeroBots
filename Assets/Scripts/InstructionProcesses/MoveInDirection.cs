@@ -26,4 +26,18 @@ public class MoveInDirection : Instruction
         }
         bc.moveDirection += pos;
     }
+
+    public override bool testCondition(BotController bc, int currentIndex, List<Instruction> instructions)
+    {
+        Vector3 pos = Vector3.zero;
+        switch (direction)
+        {
+            case Direction.FORWARD: pos.y += 1; break;
+            case Direction.BACKWARD: pos.y -= 1; break;
+            case Direction.LEFT: pos.x -= 1; break;
+            case Direction.RIGHT: pos.x += 1; break;
+        }
+        pos = bc.transform.TransformDirection(pos);
+        return GridManager.objectAtPosition(bc.transform.position + pos) == null;
+    }
 }
