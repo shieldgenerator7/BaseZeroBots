@@ -11,10 +11,19 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            instructionPanel.changeTarget(null);
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.x = Mathf.Round(mousePos.x);
             mousePos.y = Mathf.Round(mousePos.y);
+            if (instructionPanel.target != null)
+            {
+                int newIndex = instructionPanel.posToIndex(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                if (newIndex >= 0)
+                {
+                    instructionPanel.Cursor = newIndex;
+                    return;
+                }
+            }
+            instructionPanel.changeTarget(null);
             foreach (BotController bc in FindObjectsOfType<BotController>())
             {
                 if ((Vector2)bc.transform.position == mousePos)

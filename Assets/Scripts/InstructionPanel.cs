@@ -40,6 +40,13 @@ public class InstructionPanel : MonoBehaviour
     public Vector2 offset;
     private List<SpriteRenderer> instSprites = new List<SpriteRenderer>();
 
+    private SpriteRenderer sr;
+
+    private void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
     private void Update()
     {
         foreach (Instruction inst in alphabet)
@@ -112,6 +119,26 @@ public class InstructionPanel : MonoBehaviour
         row = dimension - row - 1;
         Vector2 gridPos = new Vector2(column, row);
         return (Vector2)transform.position + gridPos + offset;
+    }
+
+    /// <summary>
+    /// Returns the index in the instruction list that corresponds with the given world coordinates
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    public int posToIndex(Vector2 pos)
+    {
+        if (!sr.bounds.Contains(pos))
+        {
+            return -1;
+        }
+        Vector2 gridPos = pos - (Vector2)transform.position - offset;
+        int column = Mathf.RoundToInt(gridPos.x);
+        int row = Mathf.RoundToInt(gridPos.y);
+        row = dimension - row - 1;
+        int index = row * dimension;
+        index += column;
+        return index;
     }
 
     private void updateDisplay()
