@@ -69,6 +69,10 @@ public class Instruction : ScriptableObject
     public ProcessedAs[] getInstructionMap(int currentIndex, List<Instruction> instructions, ref ProcessedAs[] processMap)
     {
         ProcessedAs currentPA = processMap[currentIndex];
+        if (currentPA == ProcessedAs.CONSTANT)
+        {
+            return processMap;
+        }
         if (currentPA == ProcessedAs.DO_NOTHING)
         {
             if (command)
