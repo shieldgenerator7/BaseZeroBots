@@ -167,7 +167,12 @@ public class InstructionPanel : MonoBehaviour
                 target.instructions.Add(defaultInstruction);
             }
             //Initialize offset
-            offset = Vector2.one * -Mathf.Floor(dimension / 2);
+            float scalar = Mathf.Floor(dimension / 2);
+            if (dimension % 2 == 0)
+            {
+                scalar -= 0.5f;
+            }
+            offset = Vector2.one * -scalar;
             //Initialize instSprites
             while (instSprites.Count >= Size)
             {
@@ -184,6 +189,8 @@ public class InstructionPanel : MonoBehaviour
                 instSprite.transform.position = indexToPos(i);
                 i++;
             }
+            prevCursor = -1;
+            updateDisplay();
         }
     }
 }
