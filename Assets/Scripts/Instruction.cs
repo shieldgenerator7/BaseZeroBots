@@ -31,12 +31,13 @@ public class Instruction : ScriptableObject
     public int getParameterIndex(int index, int currentIndex, List<Instruction> instructions)
     {
         int paramIndex = currentIndex + 1;
-        for(int i = 1; i < parameters.Count && i < index; i++)
+        for (int i = 1; i < parameters.Count && i < index; i++)
         {
             paramIndex = instructions[paramIndex].getLastParameterIndex(currentIndex, instructions);
             paramIndex++;
         }
         return paramIndex;
+    }
     public int[] getParameterIndices(int currentIndex, List<Instruction> instructions)
     {
         int[] paramIndices = new int[parameters.Count];
