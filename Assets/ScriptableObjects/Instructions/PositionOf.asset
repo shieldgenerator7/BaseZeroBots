@@ -18,4 +18,4 @@ MonoBehaviour:
   keyCode: 112
   lifeInstruction: 1
   command: 0
-  returnType: 3
+  returnTypes: 03000000

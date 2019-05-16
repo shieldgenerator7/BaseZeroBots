@@ -18,5 +18,5 @@ MonoBehaviour:
   keyCode: 99
   lifeInstruction: 1
   command: 0
-  returnType: 4
+  returnTypes: 04000000
   option: 0

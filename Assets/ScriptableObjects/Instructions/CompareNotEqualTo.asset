@@ -18,7 +18,7 @@ MonoBehaviour:
   keyCode: 92
   lifeInstruction: 0
   command: 1
-  returnType: 1
+  returnTypes: 01000000
   lessThan: 1
   greaterThan: 1
   equalTo: 0

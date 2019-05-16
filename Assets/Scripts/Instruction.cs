@@ -21,7 +21,7 @@ public class Instruction : ScriptableObject
         POSITION,
         ENTITY
     }
-    public ReturnType returnType = ReturnType.NONE;
+    public List<ReturnType> returnTypes;
 
     public enum ProcessedAs
     {
@@ -39,7 +39,7 @@ public class Instruction : ScriptableObject
         {
             paramIndex = (int)Mathf.Repeat(paramIndex, instructions.Count);
             paramIndices[i] = paramIndex;
-            if (instructions[paramIndex].returnType == parameters[i])
+            if (instructions[paramIndex].returnTypes.Contains(parameters[i]))
             {
                 paramIndex = instructions[paramIndex].getLastParameterIndex(paramIndex, instructions);
             }
@@ -54,7 +54,7 @@ public class Instruction : ScriptableObject
         for (int i = 0; i < parameters.Count; i++)
         {
             lastIndex = (int)Mathf.Repeat(lastIndex, instructions.Count);
-            if (instructions[lastIndex].returnType == parameters[i]
+            if (instructions[lastIndex].returnTypes.Contains(parameters[i])
                 || parameters[i] == ReturnType.NONE)
             {
                 lastIndex = instructions[lastIndex].getLastParameterIndex(lastIndex, instructions);
@@ -79,7 +79,7 @@ public class Instruction : ScriptableObject
             {
                 currentPA = processMap[currentIndex] = ProcessedAs.COMMAND;
             }
-            if (returnType != ReturnType.NONE)
+            if (returnTypes.Count > 0)
             {
                 currentPA = processMap[currentIndex] = ProcessedAs.QUERY;
             }
@@ -92,7 +92,7 @@ public class Instruction : ScriptableObject
                 //don't re-paint-process the instructions at the beginning
                 break;
             }
-            if (instructions[lastIndex].returnType == parameters[i]
+            if (instructions[lastIndex].returnTypes.Contains(parameters[i])
                 || parameters[i] == ReturnType.NONE)
             {
                 if (parameters[i] == ReturnType.NONE

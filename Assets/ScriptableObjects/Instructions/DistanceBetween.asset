@@ -18,4 +18,4 @@ MonoBehaviour:
   keyCode: 98
   lifeInstruction: 1
   command: 0
-  returnType: 2
+  returnTypes: 02000000
