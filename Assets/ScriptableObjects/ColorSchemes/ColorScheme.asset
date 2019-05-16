@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectColor: {r: 1, g: 1, b: 1, a: 1}
   parameterHighlightColor: {r: 0.9150943, g: 0.911923, b: 0.64315593, a: 1}
-  commandColor: {r: 1, g: 1, b: 1, a: 1}
-  queryColor: {r: 1, g: 1, b: 1, a: 1}
-  constantColor: {r: 1, g: 1, b: 1, a: 1}
-  doNothingColor: {r: 1, g: 1, b: 1, a: 1}
+  commandColor: {r: 0.5921569, g: 1, b: 0, a: 1}
+  queryColor: {r: 0.47382993, g: 0.7924528, b: 0.011213934, a: 1}
+  constantColor: {r: 0.51936007, g: 0.6603774, b: 0.31461376, a: 1}
+  doNothingColor: {r: 0.33530614, g: 0.39649343, b: 0.5188679, a: 1}
