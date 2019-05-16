@@ -125,24 +125,28 @@ public class InstructionPanel : MonoBehaviour
         }
         if (prevCursor != Cursor)
         {
+            //Update prev cursor
+            prevCursor = cursor;
+            //Update Cursor Object
             cursorObject.transform.position = indexToPos(Cursor);
             cursorObject.GetComponent<SpriteRenderer>().color = colorScheme.selectColor;
-            //Highlight show parameters
+            //Highlight direct parameters
             foreach (GameObject go in highlightFrames)
             {
                 Destroy(go);
             }
             highlightFrames.Clear();
-            int[] paramIndices = target.instructions[Cursor].getParameterIndices(Cursor, target.instructions);
-            for (int i = 0; i < paramIndices.Length; i++)
+            if (processMap[Cursor] != Instruction.ProcessedAs.CONSTANT)
             {
-                GameObject newHighlight = Instantiate(selectorPrefabSmall);
-                newHighlight.transform.position = indexToPos(paramIndices[i]);
-                newHighlight.GetComponent<SpriteRenderer>().color = colorScheme.parameterHighlightColor;
-                highlightFrames.Add(newHighlight);
+                int[] paramIndices = target.instructions[Cursor].getParameterIndices(Cursor, target.instructions);
+                for (int i = 0; i < paramIndices.Length; i++)
+                {
+                    GameObject newHighlight = Instantiate(selectorPrefabSmall);
+                    newHighlight.transform.position = indexToPos(paramIndices[i]);
+                    newHighlight.GetComponent<SpriteRenderer>().color = colorScheme.parameterHighlightColor;
+                    highlightFrames.Add(newHighlight);
+                }
             }
-            //Update prev cursor
-            prevCursor = cursor;
         }
     }
 

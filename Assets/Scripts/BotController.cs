@@ -81,7 +81,7 @@ public class BotController : MonoBehaviour
         Instruction.ProcessedAs[] processMap = new Instruction.ProcessedAs[instructions.Count];
         for (int i = 0; i < instructions.Count; i++)
         {
-            instructions[i].getInstructionMap(i, instructions, ref processMap);
+            instructions[i].updateInstructionMap(i, instructions, ref processMap);
         }
         return processMap;
     }

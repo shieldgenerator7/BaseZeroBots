@@ -66,12 +66,12 @@ public class Instruction : ScriptableObject
         return lastIndex;
     }
 
-    public ProcessedAs[] getInstructionMap(int currentIndex, List<Instruction> instructions, ref ProcessedAs[] processMap)
+    public void updateInstructionMap(int currentIndex, List<Instruction> instructions, ref ProcessedAs[] processMap)
     {
         ProcessedAs currentPA = processMap[currentIndex];
         if (currentPA == ProcessedAs.CONSTANT)
         {
-            return processMap;
+            return;
         }
         if (currentPA == ProcessedAs.DO_NOTHING)
         {
@@ -112,8 +112,6 @@ public class Instruction : ScriptableObject
             }
             lastIndex++;
         }
-        lastIndex--;
-        return null;
     }
 
     public virtual void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
