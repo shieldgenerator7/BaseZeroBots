@@ -21,6 +21,7 @@ public class InstructionPanel : MonoBehaviour
     public GameObject instructionPrefab;
     public GameObject cursorObject;
     public GameObject selectorPrefabSmall;
+    public ColorScheme colorScheme;
 
     private List<GameObject> highlightFrames = new List<GameObject>();
 
@@ -123,6 +124,7 @@ public class InstructionPanel : MonoBehaviour
         if (prevCursor != Cursor)
         {
             cursorObject.transform.position = indexToPos(Cursor);
+            cursorObject.GetComponent<SpriteRenderer>().color = colorScheme.selectColor;
             //Highlight show parameters
             foreach(GameObject go in highlightFrames)
             {
@@ -133,8 +135,8 @@ public class InstructionPanel : MonoBehaviour
             for(int i = 0; i < paramIndices.Length; i++)
             {
                 GameObject newHighlight = Instantiate(selectorPrefabSmall);
-                newHighlight.GetComponent<SpriteRenderer>().color = Color.yellow;
                 newHighlight.transform.position = indexToPos(paramIndices[i]);
+                newHighlight.GetComponent<SpriteRenderer>().color = colorScheme.parameterHighlightColor;
                 highlightFrames.Add(newHighlight);
             }
             //Update prev cursor
