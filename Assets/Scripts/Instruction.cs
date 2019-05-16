@@ -19,7 +19,8 @@ public class Instruction : ScriptableObject
         BOOL,
         NUMBER,
         POSITION,
-        ENTITY
+        ENTITY,
+        OBJECT
     }
     public List<ReturnType> returnTypes;
 
@@ -39,7 +40,7 @@ public class Instruction : ScriptableObject
         {
             paramIndex = (int)Mathf.Repeat(paramIndex, instructions.Count);
             paramIndices[i] = paramIndex;
-            if (instructions[paramIndex].returnTypes.Contains(parameters[i]))
+            if (validParameter(parameters[i], instructions[paramIndex]))
             {
                 paramIndex = instructions[paramIndex].getLastParameterIndex(paramIndex, instructions);
             }
@@ -54,8 +55,7 @@ public class Instruction : ScriptableObject
         for (int i = 0; i < parameters.Count; i++)
         {
             lastIndex = (int)Mathf.Repeat(lastIndex, instructions.Count);
-            if (instructions[lastIndex].returnTypes.Contains(parameters[i])
-                || parameters[i] == ReturnType.NONE)
+            if (validParameter(parameters[i], instructions[lastIndex]))
             {
                 lastIndex = instructions[lastIndex].getLastParameterIndex(lastIndex, instructions);
             }
@@ -92,8 +92,7 @@ public class Instruction : ScriptableObject
                 //don't re-paint-process the instructions at the beginning
                 break;
             }
-            if (instructions[lastIndex].returnTypes.Contains(parameters[i])
-                || parameters[i] == ReturnType.NONE)
+            if (validParameter(parameters[i], instructions[lastIndex]))
             {
                 if (parameters[i] == ReturnType.NONE
                     && instructions[lastIndex].command)
@@ -112,6 +111,13 @@ public class Instruction : ScriptableObject
             }
             lastIndex++;
         }
+    }
+
+    public bool validParameter(ReturnType parameter, Instruction inst)
+    {
+        return inst.returnTypes.Contains(parameter)
+            || (parameter == ReturnType.OBJECT && inst.returnTypes.Count > 0)
+            || parameter == ReturnType.NONE;
     }
 
     public virtual void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
@@ -134,6 +140,11 @@ public class Instruction : ScriptableObject
     }
 
     public virtual BotController instructionToEntity(BotController bc, int currentIndex, List<Instruction> instructions)
+    {
+        return null;
+    }
+
+    public virtual object instructionToObject(BotController bc, int currentIndex, List<Instruction> instructions)
     {
         return null;
     }
