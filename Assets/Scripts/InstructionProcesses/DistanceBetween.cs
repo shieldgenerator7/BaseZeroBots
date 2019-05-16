@@ -7,8 +7,9 @@ public class DistanceBetween : Instruction
 {
     public override float instructionToNumber(BotController bc, int currentIndex, List<Instruction> instructions)
     {
-        int param1 = getParameterIndex(1, currentIndex, instructions);
-        int param2 = getParameterIndex(2, currentIndex, instructions);
+        int[] paramIndices = getParameterIndices(currentIndex, instructions);
+        int param1 = paramIndices[0];
+        int param2 = paramIndices[1];
         return Vector3.Distance(
             instructions[param1].
                 instructionToPosition(bc, param1, instructions),

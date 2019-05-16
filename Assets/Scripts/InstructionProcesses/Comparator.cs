@@ -17,7 +17,7 @@ public class Comparator : Instruction
         {
             int param3 = paramIndices[2];
             instructions[param3]
-                .doAction(bc, param3, instructions);
+               .doAction(bc, param3, instructions);
         }
         else
         {

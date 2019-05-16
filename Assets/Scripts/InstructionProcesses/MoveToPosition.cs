@@ -15,7 +15,8 @@ public class MoveToPosition : Instruction
 
     public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
     {
-        int param1 = getParameterIndex(1, currentIndex, instructions);
+        int[] paramIndices = getParameterIndices(currentIndex, instructions);
+        int param1 = paramIndices[0];
         Vector3 position = instructions[param1].
             instructionToPosition(bc, param1, instructions);
         switch (option)

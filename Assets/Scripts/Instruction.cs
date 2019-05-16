@@ -23,27 +23,13 @@ public class Instruction : ScriptableObject
     }
     public ReturnType returnType = ReturnType.NONE;
 
-    /// <summary>
-    /// Returns the instruction that will serve as the parameter for this instruction
-    /// </summary>
-    /// <param name="index">Base 0, starting from the current index</param>
-    /// <returns></returns>
-    public int getParameterIndex(int index, int currentIndex, List<Instruction> instructions)
-    {
-        int paramIndex = currentIndex + 1;
-        for (int i = 1; i < parameters.Count && i < index; i++)
-        {
-            paramIndex = instructions[paramIndex].getLastParameterIndex(currentIndex, instructions);
-            paramIndex++;
-        }
-        return paramIndex;
-    }
     public int[] getParameterIndices(int currentIndex, List<Instruction> instructions)
     {
         int[] paramIndices = new int[parameters.Count];
         int paramIndex = currentIndex + 1;
         for (int i = 0; i < parameters.Count; i++)
         {
+            paramIndex = (int)Mathf.Repeat(paramIndex, instructions.Count);
             paramIndices[i] = paramIndex;
             if (instructions[paramIndex].returnType == parameters[i])
             {
