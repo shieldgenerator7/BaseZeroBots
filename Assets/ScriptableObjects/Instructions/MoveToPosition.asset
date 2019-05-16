@@ -19,3 +19,4 @@ MonoBehaviour:
   lifeInstruction: 1
   command: 1
   returnType: 0
+  option: 0
