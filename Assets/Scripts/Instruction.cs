@@ -161,6 +161,13 @@ public class Instruction : ScriptableObject
         return Vector2.zero;
     }
 
+    /// <summary>
+    /// Local direction, i.e. "Vector2.up" is actually "forward" depending on rotation
+    /// </summary>
+    /// <param name="bc"></param>
+    /// <param name="currentIndex"></param>
+    /// <param name="instructions"></param>
+    /// <returns></returns>
     public virtual Vector2 instructionToDirection(BotController bc, int currentIndex, List<Instruction> instructions)
     {
         return Vector2.zero;

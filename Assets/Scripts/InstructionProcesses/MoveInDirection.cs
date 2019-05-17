@@ -16,28 +16,31 @@ public class MoveInDirection : Instruction
 
     public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
     {
-        Vector3 pos = Vector3.zero;
-        switch (direction)
-        {
-            case Direction.FORWARD: pos.y += 1; break;
-            case Direction.BACKWARD: pos.y -= 1; break;
-            case Direction.LEFT: pos.x -= 1; break;
-            case Direction.RIGHT: pos.x += 1; break;
-        }
+        Vector3 pos = instructionToDirection(bc, currentIndex, instructions);
         bc.moveDirection += pos;
     }
 
     public override bool testCondition(BotController bc, int currentIndex, List<Instruction> instructions)
     {
-        Vector3 pos = Vector3.zero;
-        switch (direction)
-        {
-            case Direction.FORWARD: pos.y += 1; break;
-            case Direction.BACKWARD: pos.y -= 1; break;
-            case Direction.LEFT: pos.x -= 1; break;
-            case Direction.RIGHT: pos.x += 1; break;
-        }
+        Vector3 pos = instructionToDirection(bc, currentIndex, instructions);
         pos = bc.transform.TransformDirection(pos);
         return GridManager.objectAtPosition(bc.transform.position + pos) == null;
+    }
+
+    public override Vector2 instructionToDirection(BotController bc, int currentIndex, List<Instruction> instructions)
+    {
+        switch (direction)
+        {
+            case Direction.FORWARD:
+                return Vector2.up;
+            case Direction.BACKWARD:
+                return Vector2.down;
+            case Direction.LEFT:
+                return Vector2.left;
+            case Direction.RIGHT:
+                return Vector2.right;
+            default:
+                return Vector2.zero;
+        }
     }
 }

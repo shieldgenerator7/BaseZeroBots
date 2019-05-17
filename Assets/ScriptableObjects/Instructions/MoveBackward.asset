@@ -18,5 +18,5 @@ MonoBehaviour:
   keyCode: 115
   lifeInstruction: 1
   command: 1
-  returnTypes: 01000000
+  returnTypes: 0400000001000000
   direction: 1
