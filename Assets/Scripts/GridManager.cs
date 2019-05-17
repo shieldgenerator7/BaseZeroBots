@@ -36,6 +36,66 @@ public class GridManager : MonoBehaviour
 
     public static Vector2 moveObject(GameObject obj, Vector2 moveTo)
     {
+        //Area Tile processing
+        AreaTile at = obj.GetComponent<AreaTile>();
+        if (at)
+        {
+            AreaTile otherTile = null;
+            foreach (AreaTile aTile in FindObjectsOfType<AreaTile>())
+            {
+                if ((Vector2)aTile.transform.position == moveTo)
+                {
+                    otherTile = aTile;
+                    break;
+                }
+            }
+            AreaTile.AreaType prevType = at.type;
+            switch (at.type)
+            {
+                case AreaTile.AreaType.GROUND:
+                    at.type = AreaTile.AreaType.VOID;
+                    break;
+                case AreaTile.AreaType.WALL:
+                case AreaTile.AreaType.TRAP:
+                case AreaTile.AreaType.GOAL:
+                    at.type = AreaTile.AreaType.GROUND;
+                    break;
+                case AreaTile.AreaType.VOID:
+                    return obj.transform.position;
+            }
+            at.GetComponent<SpriteRenderer>().color = instance.colorScheme.getColor(at.type);
+            if (otherTile != null)
+            {
+                switch (otherTile.type)
+                {
+                    case AreaTile.AreaType.GROUND:
+                        otherTile.type = prevType;
+                        break;
+                    case AreaTile.AreaType.WALL:
+                    case AreaTile.AreaType.TRAP:
+                    case AreaTile.AreaType.GOAL:
+                        if (prevType == AreaTile.AreaType.GROUND)
+                        {
+                            //do nothing
+                        }
+                        else
+                        {
+
+                        }
+                        return obj.transform.position;
+                    case AreaTile.AreaType.VOID:
+                        if (prevType == AreaTile.AreaType.GROUND)
+                        {
+                            otherTile.type = prevType;
+                        }
+                        break;
+                }
+                otherTile.GetComponent<SpriteRenderer>().color = instance.colorScheme.getColor(otherTile.type);
+                return obj.transform.position;
+            }
+            return obj.transform.position;
+        }
+        //Regular game object processing
         if (!objectPositions.ContainsKey(obj))
         {
             registerObject(obj, obj.transform.position);
