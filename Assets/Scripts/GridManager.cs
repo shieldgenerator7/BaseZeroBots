@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    public ColorScheme colorScheme;
 
     public static GameObject[,] grid = new GameObject[100, 100];
     public static Dictionary<GameObject, Vector2> objectPositions = new Dictionary<GameObject, Vector2>();
@@ -20,6 +21,7 @@ public class GridManager : MonoBehaviour
         {
             Vector2 pos = at.transform.position;
             areaGrid[(int)pos.x, (int)pos.y] = at.type;
+            at.GetComponent<SpriteRenderer>().color = colorScheme.getColor(at.type);
             if (at.type == AreaTile.AreaType.WALL)
             {
                 grid[(int)pos.x, (int)pos.y] = at.gameObject;
