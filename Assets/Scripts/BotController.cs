@@ -7,6 +7,7 @@ public class BotController : MonoBehaviour
 
     public List<Instruction> instructions;
     public List<Instruction> alphabet;
+    public Instruction doNothingInstruction;
 
     public Dictionary<int, object> memory = new Dictionary<int, object>();
 
@@ -59,6 +60,15 @@ public class BotController : MonoBehaviour
                 Destroy(gameObject);
             }
             indicesToDestroy.Clear();
+        }
+    }
+
+    public void damage(int damageAmount)
+    {
+        for (int i = 0; i < damageAmount; i++)
+        {
+            int randomIndex = Random.Range(0, instructions.Count);
+            destroyInstruction(randomIndex, doNothingInstruction);
         }
     }
 

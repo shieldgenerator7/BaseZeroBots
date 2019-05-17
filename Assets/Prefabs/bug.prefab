@@ -146,4 +146,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f3ad1c11c8eee5740898a0fd4ed742cd, type: 2}
   - {fileID: 11400000, guid: 88904059b6d580f48a58ba38b435572b, type: 2}
   - {fileID: 11400000, guid: ddf76d17340dffe489b958e0168b276c, type: 2}
+  doNothingInstruction: {fileID: 11400000, guid: 4c8cdb2f061bf994aabc3ef05c1c852e,
+    type: 2}
   moveDirection: {x: 0, y: 0, z: 0}

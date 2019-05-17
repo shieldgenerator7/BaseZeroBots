@@ -29,11 +29,7 @@ public class ShotController : MonoBehaviour
         if (bc)
         {
             //Delete target instructions
-            for (int i = 0; i < damage; i++)
-            {
-                int randomIndex = Random.Range(0, bc.instructions.Count);
-                bc.destroyInstruction(randomIndex, replaceInstruction);
-            }
+            bc.damage(damage);
             //Destroy shot
             Destroy(gameObject);
         }
