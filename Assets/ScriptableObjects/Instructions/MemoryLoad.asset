@@ -18,5 +18,5 @@ MonoBehaviour:
   keyCode: 50
   lifeInstruction: 1
   command: 1
-  returnTypes: 0500000001000000020000000300000004000000
+  returnTypes: 060000000100000002000000030000000400000005000000
   option: 1

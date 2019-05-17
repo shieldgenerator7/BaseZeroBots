@@ -18,6 +18,6 @@ MonoBehaviour:
   keyCode: 103
   lifeInstruction: 1
   command: 1
-  returnTypes: 04000000
+  returnTypes: 05000000
   option: 0
   entityType: 2

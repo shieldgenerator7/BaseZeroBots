@@ -19,6 +19,7 @@ public class Instruction : ScriptableObject
         BOOL,
         NUMBER,
         POSITION,
+        DIRECTION,
         ENTITY,
         OBJECT
     }
@@ -134,6 +135,8 @@ public class Instruction : ScriptableObject
                 return instructionToNumber(bc, currentIndex, instructions);
             case ReturnType.POSITION:
                 return instructionToPosition(bc, currentIndex, instructions);
+            case ReturnType.DIRECTION:
+                return instructionToDirection(bc, currentIndex, instructions);
             case ReturnType.ENTITY:
                 return instructionToEntity(bc, currentIndex, instructions);
             case ReturnType.OBJECT:
@@ -154,6 +157,11 @@ public class Instruction : ScriptableObject
     }
 
     public virtual Vector2 instructionToPosition(BotController bc, int currentIndex, List<Instruction> instructions)
+    {
+        return Vector2.zero;
+    }
+
+    public virtual Vector2 instructionToDirection(BotController bc, int currentIndex, List<Instruction> instructions)
     {
         return Vector2.zero;
     }
