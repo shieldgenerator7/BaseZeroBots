@@ -13,17 +13,32 @@ public class GetEntity : Instruction
     }
     public Option option;
 
-    public override BotController instructionToEntity(BotController bc, int currentIndex, List<Instruction> instructions)
+    public enum EntityType
+    {
+        BOT,
+        WALL,
+        GOAL
+    }
+    public EntityType entityType;
+
+    public override Entity instructionToEntity(BotController bc, int currentIndex, List<Instruction> instructions)
     {
         if (option == Option.SELF)
         {
             return bc;
         }
-        float extreme = (option == Option.CLOSEST) ? float.MaxValue : 0;
-        BotController target = null;
-        foreach (BotController fbc in FindObjectsOfType<BotController>())
+        //Get the target type string
+        string targetTypeString = typeof(BotController).Name;
+        if (entityType != EntityType.BOT)
         {
-            if (bc != fbc)
+            targetTypeString = typeof(AreaTile).Name + "." + entityType;
+        }
+        //
+        float extreme = (option == Option.CLOSEST) ? float.MaxValue : 0;
+        Entity target = null;
+        foreach (Entity fbc in FindObjectsOfType<Entity>())
+        {
+            if (fbc != bc && fbc.getTypeString() == targetTypeString)
             {
                 float distance = Vector3.Distance(bc.transform.position, fbc.transform.position);
                 switch (option)

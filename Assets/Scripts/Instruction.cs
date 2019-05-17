@@ -158,7 +158,7 @@ public class Instruction : ScriptableObject
         return Vector2.zero;
     }
 
-    public virtual BotController instructionToEntity(BotController bc, int currentIndex, List<Instruction> instructions)
+    public virtual Entity instructionToEntity(BotController bc, int currentIndex, List<Instruction> instructions)
     {
         return null;
     }

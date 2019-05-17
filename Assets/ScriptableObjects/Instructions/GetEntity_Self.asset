@@ -20,3 +20,4 @@ MonoBehaviour:
   command: 0
   returnTypes: 04000000
   option: 2
+  entityType: 0

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BotController : MonoBehaviour
+public class BotController : Entity
 {
 
     public List<Instruction> instructions;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AreaTile : MonoBehaviour
+public class AreaTile : Entity
 {
     public enum AreaType
     {
@@ -13,4 +13,9 @@ public class AreaTile : MonoBehaviour
         GOAL
     }
     public AreaType type;
+
+    public override string getTypeString()
+    {
+        return base.getTypeString() + "." + type;
+    }
 }

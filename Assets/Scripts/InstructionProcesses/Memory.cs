@@ -95,12 +95,12 @@ public class Memory : Instruction
         return base.instructionToPosition(bc, currentIndex, instructions);
     }
 
-    public override BotController instructionToEntity(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override Entity instructionToEntity(BotController bc, int currentIndex, List<Instruction> instructions)
     {
         int memoryLocation = getMemoryLocation(bc, currentIndex, instructions);
         if (canAccessMemory(bc, memoryLocation, typeof(BotController)))
         {
-            return (BotController)bc.memory[memoryLocation];
+            return (Entity)bc.memory[memoryLocation];
         }
         return base.instructionToEntity(bc, currentIndex, instructions);
     }

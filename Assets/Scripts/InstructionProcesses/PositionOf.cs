@@ -9,7 +9,7 @@ public class PositionOf : Instruction
     {
         int[] paramIndices = getParameterIndices(currentIndex, instructions);
         int param1 = paramIndices[0];
-        BotController entity = instructions[param1].instructionToEntity(bc, param1, instructions);
+        Entity entity = instructions[param1].instructionToEntity(bc, param1, instructions);
         if (entity)
         {
             return entity.transform.position;
