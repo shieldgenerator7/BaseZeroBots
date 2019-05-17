@@ -38,6 +38,7 @@ public class TurnManager : MonoBehaviour
             {
                 bc.takeTurn();
             }
+            GridManager.checkAllAreaEffects();
         }
     }
 }
