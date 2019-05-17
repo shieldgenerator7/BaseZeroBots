@@ -19,14 +19,16 @@ public class MoveToPosition : Instruction
         int param1 = paramIndices[0];
         Vector3 position = instructions[param1].
             instructionToPosition(bc, param1, instructions);
+        Vector2 moveDir = Vector2.zero;
         switch (option)
         {
             case Option.TOWARDS:
-                bc.moveDirection += (position - bc.transform.position).normalized;
+                moveDir = (position - bc.transform.position).normalized;
                 break;
             case Option.AWAY:
-                bc.moveDirection += (bc.transform.position - position).normalized;
+                moveDir = (bc.transform.position - position).normalized;
                 break;
         }
+        bc.moveDirection += bc.transform.InverseTransformDirection(moveDir);
     }
 }
