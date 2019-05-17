@@ -221,6 +221,10 @@ public class InstructionPanel : MonoBehaviour
                 i++;
             }
             prevCursor = -1;
+            if (Cursor >= Size)
+            {
+                Cursor = 0;
+            }
             updateDisplay();
         }
     }
