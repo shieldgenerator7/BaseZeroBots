@@ -9,8 +9,8 @@ public class GridManager : MonoBehaviour
     public static GameObject[,] grid = new GameObject[100, 100];
     public static Dictionary<GameObject, Vector2> objectPositions = new Dictionary<GameObject, Vector2>();
 
-    public static AreaTile.AreaType[,] areaGrid = new AreaTile.AreaType[100, 100];
-   
+    public static AreaTile[,] areaGrid = new AreaTile[100, 100];
+
     private static GridManager instance;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class GridManager : MonoBehaviour
         foreach (AreaTile at in FindObjectsOfType<AreaTile>())
         {
             Vector2 pos = at.transform.position;
-            areaGrid[(int)pos.x, (int)pos.y] = at.type;
+            areaGrid[(int)pos.x, (int)pos.y] = at;
             at.GetComponent<SpriteRenderer>().color = colorScheme.getColor(at.type);
             if (at.type == AreaTile.AreaType.WALL)
             {
@@ -56,9 +56,54 @@ public class GridManager : MonoBehaviour
         return grid[(int)pos.x, (int)pos.y];
     }
 
+    /// <summary>
+    /// Returns the next object in the given world direction, starting from the position, 
+    /// but not including the position itself
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="dir"></param>
+    /// <returns></returns>
+    public static Entity nextObjectInDirection(Vector2 pos, Vector2 dir, bool checkTiles = false)
+    {
+        if (pos == null || dir == null || dir == Vector2.zero)
+        {
+            return null;
+        }
+        dir.Normalize();
+        if (dir.magnitude < 1)
+        {
+            return null;
+        }
+        pos += dir;
+        pos.x = Mathf.Round(pos.x);
+        pos.y = Mathf.Round(pos.y);
+        while (pos.x >= 0 && pos.x < grid.GetLength(0)
+            && pos.y >= 0 && pos.y < grid.GetLength(1))
+        {
+            GameObject go = objectAtPosition(pos);
+            if (go != null)
+            {
+                return go.GetComponent<Entity>();
+            }
+            if (checkTiles)
+            {
+                AreaTile tile = areaGrid[(int)pos.x, (int)pos.y];
+                if (tile.type != AreaTile.AreaType.GROUND)
+                {
+                    return tile;
+                }
+            }
+
+            pos += dir;
+            pos.x = Mathf.Round(pos.x);
+            pos.y = Mathf.Round(pos.y);
+        }
+        return null;
+    }
+
     public static void checkAllAreaEffects()
     {
-        foreach(BotController bc in FindObjectsOfType<BotController>())
+        foreach (BotController bc in FindObjectsOfType<BotController>())
         {
             checkAreaEffect(bc.gameObject, bc.transform.position);
         }
@@ -66,7 +111,7 @@ public class GridManager : MonoBehaviour
 
     public static void checkAreaEffect(GameObject go, Vector2 movedTo)
     {
-        switch (areaGrid[(int)movedTo.x, (int)movedTo.y])
+        switch (areaGrid[(int)movedTo.x, (int)movedTo.y].type)
         {
             case AreaTile.AreaType.GROUND:
             case AreaTile.AreaType.WALL:

@@ -9,7 +9,8 @@ public class GetEntity : Instruction
     {
         CLOSEST,
         FURTHEST,
-        SELF
+        SELF,
+        IN_DIRECTION
     }
     public Option option;
 
@@ -21,11 +22,28 @@ public class GetEntity : Instruction
     }
     public EntityType entityType;
 
+    public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    {
+        instructionToEntity(bc, currentIndex, instructions);
+    }
+
     public override Entity instructionToEntity(BotController bc, int currentIndex, List<Instruction> instructions)
     {
         if (option == Option.SELF)
         {
             return bc;
+        }
+        if (option == Option.IN_DIRECTION)
+        {
+            int[] paramIndices = getParameterIndices(currentIndex, instructions);
+            int param1 = paramIndices[0];
+            Vector2 direction = instructions[param1].instructionToDirection(bc, currentIndex, instructions);
+            Entity entity = GridManager.nextObjectInDirection(
+                bc.transform.position,
+                bc.transform.TransformDirection(direction),
+                true
+                );
+            return entity;
         }
         //Get the target type string
         string targetTypeString = typeof(BotController).Name;
