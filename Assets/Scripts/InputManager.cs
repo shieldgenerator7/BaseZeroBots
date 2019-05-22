@@ -71,9 +71,9 @@ public class InputManager : MonoBehaviour
                 instructionPanel.changeTarget(null);
             }
         }
-        //Select other bot
         if (instructionPanel.target == null)
         {
+            //Select other bot
             bool up = Input.GetKeyDown(KeyCode.UpArrow);
             bool down = Input.GetKeyDown(KeyCode.DownArrow);
             bool left = Input.GetKeyDown(KeyCode.LeftArrow);
@@ -86,6 +86,13 @@ public class InputManager : MonoBehaviour
                 index += direction;
                 index = (int)Mathf.Repeat(index, bots.Count);
                 CurrentBot = bots[index];
+            }
+
+            //Reset Game
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                LevelManager lm = FindObjectOfType<LevelManager>();
+                lm.LoadLevel(lm.LevelIndex);
             }
         }
     }
