@@ -9,13 +9,13 @@ public class KeyButton : MonoBehaviour
     public Key key;
 
     private SpriteRenderer sr;
-    private void Start()
-    {
-        sr = GetComponent<SpriteRenderer>();
-    }
 
     public bool isMouseOver(Vector2 mousePos)
     {
+        if (sr == null)
+        {
+            sr = GetComponent<SpriteRenderer>();
+        }
         return sr.bounds.Contains(mousePos);
     }
 
