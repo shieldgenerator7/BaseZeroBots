@@ -65,6 +65,12 @@ public class InstructionPanel : MonoBehaviour
                 break;
             }
         }
+        //Highlight the key buttons
+        mouseClicked = Input.GetMouseButton(0);
+        foreach (KeyButton kb in keyButtons)
+        {
+            kb.updateHighlight(mousePos, mouseClicked, colorScheme);
+        }
         //Check for navigating the grid
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -118,7 +124,7 @@ public class InstructionPanel : MonoBehaviour
             Cursor = newIndex;
             return true;
         }
-        foreach(KeyButton kb in keyButtons)
+        foreach (KeyButton kb in keyButtons)
         {
             if (kb.isMouseOver(mousePos))
             {
@@ -268,7 +274,7 @@ public class InstructionPanel : MonoBehaviour
                 }
             }
             //Remove previous key buttons
-            foreach(KeyButton kb in keyButtons)
+            foreach (KeyButton kb in keyButtons)
             {
                 Destroy(kb.gameObject);
             }

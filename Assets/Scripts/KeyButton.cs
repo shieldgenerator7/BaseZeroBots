@@ -18,4 +18,33 @@ public class KeyButton : MonoBehaviour
     {
         return sr.bounds.Contains(mousePos);
     }
+
+    public void updateHighlight(Vector2 mousePos, bool mouseClicked, ColorScheme colorScheme)
+    {
+        if (isMouseOver(mousePos))
+        {
+            if (mouseClicked)
+            {
+                updateColor(colorScheme.clickedColor);
+            }
+            else
+            {
+                updateColor(colorScheme.hoverColor);
+            }
+        }
+        else
+        {
+            updateColor(colorScheme.idleColor);
+        }
+        if (Input.GetKey(key.keyCode))
+        {
+            updateColor(colorScheme.clickedColor);
+        }
+    }
+
+    public void updateColor(Color c)
+    {
+        keySR.color = c;
+        symbolSR.color = c;
+    }
 }

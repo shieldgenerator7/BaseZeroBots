@@ -23,3 +23,6 @@ MonoBehaviour:
   voidColor: {r: 0.011764706, g: 0.015686275, b: 0.019607844, a: 1}
   trapColor: {r: 1, g: 0.2901961, b: 0.20392157, a: 1}
   goalColor: {r: 1, g: 0.9882353, b: 0.44705883, a: 1}
+  idleColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0.3882353, g: 0.49019608, b: 0.23921569, a: 1}
+  clickedColor: {r: 0.5921569, g: 1, b: 0, a: 1}

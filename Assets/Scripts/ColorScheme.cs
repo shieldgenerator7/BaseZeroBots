@@ -22,6 +22,11 @@ public class ColorScheme : ScriptableObject
     public Color trapColor = Color.white;
     public Color goalColor = Color.white;
 
+    [Header("Key Activation State")]
+    public Color idleColor = Color.white;
+    public Color hoverColor = Color.white;
+    public Color clickedColor = Color.white;
+
     public Color getColor(Instruction.ProcessedAs pa)
     {
         switch (pa)
