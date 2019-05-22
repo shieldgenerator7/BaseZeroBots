@@ -5,8 +5,28 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public InstructionPanel instructionPanel;
+    public GameObject botCursor;
 
     private BotController mostRecentBot = null;
+    public BotController CurrentBot
+    {
+        get { return mostRecentBot; }
+        set
+        {
+            mostRecentBot = value;
+            botCursor.transform.position = mostRecentBot.transform.position;
+        }
+    }
+
+    private void Start()
+    {
+        FindObjectOfType<LevelManager>().onSceneLoaded += sceneLoaded;
+    }
+
+    private void sceneLoaded()
+    {
+        CurrentBot = FindObjectOfType<BotController>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -28,12 +48,12 @@ public class InputManager : MonoBehaviour
             {
                 if ((Vector2)bc.transform.position == mousePos)
                 {
-                    mostRecentBot = bc;
+                    CurrentBot = bc;
                     instructionPanel.changeTarget(bc);
                     break;
                 }
             }
-            }
+        }
         //Escape the instruction panel
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -44,12 +64,20 @@ public class InputManager : MonoBehaviour
         {
             if (instructionPanel.target == null)
             {
-                instructionPanel.changeTarget(mostRecentBot);
+                instructionPanel.changeTarget(CurrentBot);
             }
             else
             {
                 instructionPanel.changeTarget(null);
             }
         }
+    }
+
+    private void LateUpdate()
+    {
+        if (mostRecentBot)
+        {
+            botCursor.transform.position = mostRecentBot.transform.position;
         }
+    }
 }
