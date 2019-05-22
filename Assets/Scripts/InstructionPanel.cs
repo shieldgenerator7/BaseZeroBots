@@ -16,15 +16,18 @@ public class InstructionPanel : MonoBehaviour
     }
 
     public List<Instruction> alphabet;
+    public List<KeyScheme> keySchemes;
 
     public BotController target;
     public Instruction defaultInstruction;
+    public GameObject keyButtonPrefab;
     public GameObject instructionPrefab;
     public GameObject cursorObject;
     public GameObject selectorPrefabSmall;
     public ColorScheme colorScheme;
 
     private List<GameObject> highlightFrames = new List<GameObject>();
+    private List<GameObject> keyButtons = new List<GameObject>();
 
     [SerializeField]
     private int cursor = 0;//where the next letter is going to be
@@ -226,6 +229,39 @@ public class InstructionPanel : MonoBehaviour
                 Cursor = 0;
             }
             updateDisplay();
+
+            //
+            //Show keys
+            //
+            Vector2 basePosition = indexToPos(target.instructions.Count);
+            //Select key scheme
+            KeyScheme keyScheme = keySchemes[keySchemes.Count - 1];
+            foreach (KeyScheme ks in keySchemes)
+            {
+                if (ks.amountOfKeys == target.alphabet.Count)
+                {
+                    keyScheme = ks;
+                    break;
+                }
+            }
+            //Remove previous key buttons
+            foreach(GameObject go in keyButtons)
+            {
+                Destroy(go);
+            }
+            keyButtons.Clear();
+            //Generate new key buttons
+            for (i = 0; i < target.alphabet.Count; i++)
+            {
+                GameObject keyButton = Instantiate(keyButtonPrefab);
+                keyButton.transform.parent = transform;
+                keyButton.transform.position =
+                    indexToPos(target.instructions.Count + (i * 2));
+                KeyButton kb = keyButton.GetComponent<KeyButton>();
+                kb.keySR.sprite = keyScheme.keys[i].keySprite;
+                kb.symbolSR.sprite = target.alphabet[i].symbol;
+                keyButtons.Add(keyButton);
+            }
         }
     }
 }

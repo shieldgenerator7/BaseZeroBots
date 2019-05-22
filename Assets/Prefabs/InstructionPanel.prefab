@@ -202,8 +202,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a6871fb2e70c2314995c2109534904fa, type: 2}
   - {fileID: 11400000, guid: 64fb44a2681fead479eb3650f730202c, type: 2}
   - {fileID: 11400000, guid: 32cbf70cca5614347be6966dbb3c0f6e, type: 2}
+  keySchemes:
+  - {fileID: 11400000, guid: 784cec6ef753a98429d294d326bf0cdf, type: 2}
+  - {fileID: 11400000, guid: ad03a8db6cd74f140911cc990a458322, type: 2}
   target: {fileID: 0}
   defaultInstruction: {fileID: 11400000, guid: 4c8cdb2f061bf994aabc3ef05c1c852e, type: 2}
+  keyButtonPrefab: {fileID: 732931394606347962, guid: 56c81ebdd355b7640b6268cb6f82c094,
+    type: 3}
   instructionPrefab: {fileID: 1361737343417213753, guid: fe1c0279b910e134fa586788fa055901,
     type: 3}
   cursorObject: {fileID: 6001290477194850147}
