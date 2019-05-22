@@ -5,17 +5,26 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     public ColorScheme colorScheme;
+    public const int LENGTH = 100;
+    public const int WIDTH = 100;
 
-    public static GameObject[,] grid = new GameObject[100, 100];
+    public static GameObject[,] grid = new GameObject[LENGTH, WIDTH];
     public static Dictionary<GameObject, Vector2> objectPositions = new Dictionary<GameObject, Vector2>();
 
-    public static AreaTile[,] areaGrid = new AreaTile[100, 100];
+    public static AreaTile[,] areaGrid = new AreaTile[LENGTH, WIDTH];
 
     private static GridManager instance;
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
+        FindObjectOfType<LevelManager>().onSceneLoaded += onSceneLoaded;
+    }
+
+    public void onSceneLoaded()
+    {
+        grid = new GameObject[LENGTH, WIDTH];
+        areaGrid = new AreaTile[LENGTH, WIDTH];
         //Initialize areaGrid
         foreach (AreaTile at in FindObjectsOfType<AreaTile>())
         {
