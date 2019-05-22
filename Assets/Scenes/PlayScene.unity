@@ -320,11 +320,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df12c71f09d63644ab5470e7770ab32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLevelIndex: 2
+  startLevelIndex: 1
   levels:
   - Level_Test
   - Level1
   - Level2
+  - Level3
+  - Level4
 --- !u!4 &1542845316
 Transform:
   m_ObjectHideFlags: 0
