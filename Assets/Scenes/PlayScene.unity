@@ -321,6 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
+  - Level1
   - Level_Test
 --- !u!4 &1542845316
 Transform:

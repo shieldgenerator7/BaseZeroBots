@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(AreaTile))]
+[CanEditMultipleObjects]
 public class AreaTileEditor : Editor
 {
     public override void OnInspectorGUI()
