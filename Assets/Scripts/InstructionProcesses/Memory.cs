@@ -28,7 +28,7 @@ public class Memory : Instruction
     {
         return option == Option.LOAD
             && bc.memory.ContainsKey(memoryLocation)
-            //&& bc.memory[memoryLocation].GetType() == type
+            && bc.memory[memoryLocation].GetType() == type
             ;
     }
 
