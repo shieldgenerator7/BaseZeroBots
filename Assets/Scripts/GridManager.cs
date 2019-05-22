@@ -23,9 +23,14 @@ public class GridManager : MonoBehaviour
 
     public void onSceneLoaded()
     {
+        //Initialize grid
         grid = new GameObject[LENGTH, WIDTH];
-        areaGrid = new AreaTile[LENGTH, WIDTH];
+        foreach (BotController bc in FindObjectsOfType<BotController>())
+        {
+            registerObject(bc.gameObject, bc.transform.position);
+        }
         //Initialize areaGrid
+        areaGrid = new AreaTile[LENGTH, WIDTH];
         foreach (AreaTile at in FindObjectsOfType<AreaTile>())
         {
             Vector2 pos = at.transform.position;
