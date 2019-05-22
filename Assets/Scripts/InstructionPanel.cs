@@ -54,9 +54,12 @@ public class InstructionPanel : MonoBehaviour
     private void Update()
     {
         //Check for adding an instruction
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        bool mouseClicked = Input.GetMouseButtonDown(0);
         for (int i = 0; i < keyButtons.Count; i++)
         {
-            if (Input.GetKeyDown(keyButtons[i].key.keyCode))
+            if (Input.GetKeyDown(keyButtons[i].key.keyCode)
+                || (mouseClicked && keyButtons[i].isMouseOver(mousePos)))
             {
                 addInstruction(target.alphabet[i]);
                 break;
@@ -105,6 +108,24 @@ public class InstructionPanel : MonoBehaviour
             }
         }
         updateDisplay();
+    }
+
+    public bool processClick(Vector2 mousePos)
+    {
+        int newIndex = posToIndex(mousePos);
+        if (newIndex >= 0)
+        {
+            Cursor = newIndex;
+            return true;
+        }
+        foreach(KeyButton kb in keyButtons)
+        {
+            if (kb.isMouseOver(mousePos))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void addInstruction(Instruction inst)

@@ -16,10 +16,8 @@ public class InputManager : MonoBehaviour
             mousePos.y = Mathf.Round(mousePos.y);
             if (instructionPanel.target != null)
             {
-                int newIndex = instructionPanel.posToIndex(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                if (newIndex >= 0)
+                if (instructionPanel.processClick(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
                 {
-                    instructionPanel.Cursor = newIndex;
                     return;
                 }
             }
