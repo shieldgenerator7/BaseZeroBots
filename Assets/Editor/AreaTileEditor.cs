@@ -13,9 +13,10 @@ public class AreaTileEditor : Editor
         if (GUILayout.Button("Update All Visuals"))
         {
             ColorScheme cs = FindObjectOfType<GridManager>().colorScheme;
-            foreach(AreaTile at in FindObjectsOfType<AreaTile>())
+            foreach (AreaTile at in FindObjectsOfType<AreaTile>())
             {
                 at.GetComponent<SpriteRenderer>().color = cs.getColor(at.type);
+                at.overlaySR.enabled = at.type == AreaTile.AreaType.GROUND_ELECTRIC;
             }
         }
     }

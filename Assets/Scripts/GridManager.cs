@@ -36,6 +36,7 @@ public class GridManager : MonoBehaviour
             Vector2 pos = at.transform.position;
             areaGrid[(int)pos.x, (int)pos.y] = at;
             at.GetComponent<SpriteRenderer>().color = colorScheme.getColor(at.type);
+            at.overlaySR.enabled = at.type == AreaTile.AreaType.GROUND_ELECTRIC;
             if (at.type == AreaTile.AreaType.WALL)
             {
                 grid[(int)pos.x, (int)pos.y] = at.gameObject;

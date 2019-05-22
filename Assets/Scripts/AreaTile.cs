@@ -10,9 +10,12 @@ public class AreaTile : Entity
         WALL,
         VOID,
         TRAP,
-        GOAL
+        GOAL,
+        GROUND_ELECTRIC
     }
     public AreaType type;
+
+    public SpriteRenderer overlaySR;
 
     public override string getTypeString()
     {

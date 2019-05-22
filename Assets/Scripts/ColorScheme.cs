@@ -48,6 +48,7 @@ public class ColorScheme : ScriptableObject
     {
         switch (areaType)
         {
+            case AreaTile.AreaType.GROUND_ELECTRIC:
             case AreaTile.AreaType.GROUND:
                 return groundColor;
             case AreaTile.AreaType.WALL:
