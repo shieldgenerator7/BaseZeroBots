@@ -51,7 +51,8 @@ public class BotEditPanel : MonoBehaviour
         else
         {
             gameObject.SetActive(true);
-            panels[0].changeTarget(target);
+            PanelIndex = 0;
+            Panel.changeTarget(target);
         }
     }
 
