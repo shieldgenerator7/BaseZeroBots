@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
         {
             if (value >= 0 && value != currentLevelIndex)
             {
+                value = (int)Mathf.Repeat(value, levels.Count);
                 LoadLevel(value);
                 currentLevelIndex = value;
             }

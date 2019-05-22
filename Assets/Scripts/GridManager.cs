@@ -197,7 +197,7 @@ public class GridManager : MonoBehaviour
                 go.GetComponent<BotController>().damage(1);
                 break;
             case AreaTile.AreaType.GOAL:
-                go.GetComponent<SpriteRenderer>().color = Color.green;
+                FindObjectOfType<LevelManager>().LevelIndex++;
                 break;
         }
     }
