@@ -14,11 +14,11 @@ public class TurnManager : MonoBehaviour
         get { return paused; }
         set
         {
-            paused = value;
-            if (!paused)
+            if (!value && paused != value)
             {
                 lastTurnTime = Time.time;
             }
+            paused = value;
         }
     }
 

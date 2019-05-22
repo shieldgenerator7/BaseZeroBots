@@ -216,6 +216,7 @@ public class InstructionPanel : MonoBehaviour
     public void changeTarget(BotController bc)
     {
         target = bc;
+        FindObjectOfType<TurnManager>().Paused = target != null;
         if (bc == null)
         {
             gameObject.SetActive(false);
