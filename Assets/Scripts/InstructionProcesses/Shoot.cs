@@ -14,5 +14,6 @@ public class Shoot : Instruction
         projectile.transform.up = bc.transform.up;
         projectile.transform.localPosition = bc.transform.localPosition + bc.transform.up;
         projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up;
+        projectile.GetComponent<ShotController>().owner = bc;
     }
 }

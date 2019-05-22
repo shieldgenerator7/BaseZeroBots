@@ -8,6 +8,8 @@ public class ShotController : MonoBehaviour
     public float lifetime = 1;
     public Instruction replaceInstruction;
 
+    public BotController owner;
+
     private float lifeStartTime;
 
     private void Start()
@@ -23,10 +25,10 @@ public class ShotController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D coll)
     {
-        BotController bc = collision.gameObject.GetComponent<BotController>();
-        if (bc)
+        BotController bc = coll.gameObject.GetComponent<BotController>();
+        if (bc && bc != owner)
         {
             //Delete target instructions
             bc.damage(damage);
