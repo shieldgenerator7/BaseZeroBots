@@ -27,7 +27,7 @@ public class InstructionPanel : MonoBehaviour
     public ColorScheme colorScheme;
 
     private List<GameObject> highlightFrames = new List<GameObject>();
-    private List<GameObject> keyButtons = new List<GameObject>();
+    private List<KeyButton> keyButtons = new List<KeyButton>();
 
     [SerializeField]
     private int cursor = 0;//where the next letter is going to be
@@ -53,14 +53,16 @@ public class InstructionPanel : MonoBehaviour
 
     private void Update()
     {
-        foreach (Instruction inst in alphabet)
+        //Check for adding an instruction
+        for (int i = 0; i < keyButtons.Count; i++)
         {
-            if (Input.GetKeyDown(inst.keyCode))
+            if (Input.GetKeyDown(keyButtons[i].key.keyCode))
             {
-                addInstruction(inst);
+                addInstruction(target.alphabet[i]);
                 break;
             }
         }
+        //Check for navigating the grid
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Cursor--;
@@ -245,9 +247,9 @@ public class InstructionPanel : MonoBehaviour
                 }
             }
             //Remove previous key buttons
-            foreach(GameObject go in keyButtons)
+            foreach(KeyButton kb in keyButtons)
             {
-                Destroy(go);
+                Destroy(kb.gameObject);
             }
             keyButtons.Clear();
             //Generate new key buttons
@@ -260,7 +262,8 @@ public class InstructionPanel : MonoBehaviour
                 KeyButton kb = keyButton.GetComponent<KeyButton>();
                 kb.keySR.sprite = keyScheme.keys[i].keySprite;
                 kb.symbolSR.sprite = target.alphabet[i].symbol;
-                keyButtons.Add(keyButton);
+                kb.key = keyScheme.keys[i];
+                keyButtons.Add(kb);
             }
         }
     }

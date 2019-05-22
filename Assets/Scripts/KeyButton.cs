@@ -6,4 +6,5 @@ public class KeyButton : MonoBehaviour
 {
     public SpriteRenderer keySR;
     public SpriteRenderer symbolSR;
+    public Key key;
 }
