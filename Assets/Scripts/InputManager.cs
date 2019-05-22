@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public InstructionPanel instructionPanel;
+    public BotEditPanel botEditPanel;
     public GameObject botCursor;
 
     private BotController mostRecentBot = null;
@@ -36,20 +36,20 @@ public class InputManager : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.x = Mathf.Round(mousePos.x);
             mousePos.y = Mathf.Round(mousePos.y);
-            if (instructionPanel.target != null)
+            if (botEditPanel.Open)
             {
-                if (instructionPanel.processClick(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
+                if (botEditPanel.processClick(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
                 {
                     return;
                 }
             }
-            instructionPanel.changeTarget(null);
+            botEditPanel.changeTarget(null);
             foreach (BotController bc in FindObjectsOfType<BotController>())
             {
                 if ((Vector2)bc.transform.position == mousePos)
                 {
                     CurrentBot = bc;
-                    instructionPanel.changeTarget(bc);
+                    botEditPanel.changeTarget(bc);
                     break;
                 }
             }
@@ -57,21 +57,21 @@ public class InputManager : MonoBehaviour
         //Escape the instruction panel
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            instructionPanel.changeTarget(null);
+            botEditPanel.changeTarget(null);
         }
         //Open instruction panel of most recent bot
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (instructionPanel.target == null)
+            if (!botEditPanel.Open)
             {
-                instructionPanel.changeTarget(CurrentBot);
+                botEditPanel.changeTarget(CurrentBot);
             }
             else
             {
-                instructionPanel.changeTarget(null);
+                botEditPanel.changeTarget(null);
             }
         }
-        if (instructionPanel.target == null)
+        if (!botEditPanel.Open)
         {
             //Select other bot
             bool up = Input.GetKeyDown(KeyCode.UpArrow);

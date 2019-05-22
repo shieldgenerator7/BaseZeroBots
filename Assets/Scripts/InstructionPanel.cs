@@ -14,8 +14,7 @@ public class InstructionPanel : MonoBehaviour
             dimension = Mathf.Max(1, dimension);
         }
     }
-
-    public List<Instruction> alphabet;
+    
     public List<KeyScheme> keySchemes;
 
     public BotController target;
@@ -42,7 +41,7 @@ public class InstructionPanel : MonoBehaviour
     private int prevCursor = -1;
 
     public Vector2 offset;
-    private List<SpriteRenderer> instSprites = new List<SpriteRenderer>();
+    protected List<SpriteRenderer> instSprites = new List<SpriteRenderer>();
 
     private SpriteRenderer sr;
 
@@ -54,23 +53,7 @@ public class InstructionPanel : MonoBehaviour
     private void Update()
     {
         //Check for adding an instruction
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        bool mouseClicked = Input.GetMouseButtonDown(0);
-        for (int i = 0; i < keyButtons.Count; i++)
-        {
-            if (Input.GetKeyDown(keyButtons[i].key.keyCode)
-                || (mouseClicked && keyButtons[i].isMouseOver(mousePos)))
-            {
-                addInstruction(target.alphabet[i]);
-                break;
-            }
-        }
-        //Highlight the key buttons
-        mouseClicked = Input.GetMouseButton(0);
-        foreach (KeyButton kb in keyButtons)
-        {
-            kb.updateHighlight(mousePos, mouseClicked, colorScheme);
-        }
+        checkSymbolInput();
         //Check for navigating the grid
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -88,7 +71,7 @@ public class InstructionPanel : MonoBehaviour
         {
             Cursor += dimension;
         }
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftControl))
         {
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
@@ -116,6 +99,28 @@ public class InstructionPanel : MonoBehaviour
         updateDisplay();
     }
 
+    protected virtual void checkSymbolInput()
+    {
+        //Check for adding an instruction
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        bool mouseClicked = Input.GetMouseButtonDown(0);
+        for (int i = 0; i < keyButtons.Count; i++)
+        {
+            if (Input.GetKeyDown(keyButtons[i].key.keyCode)
+                || (mouseClicked && keyButtons[i].isMouseOver(mousePos)))
+            {
+                addInstruction(target.alphabet[i]);
+                break;
+            }
+        }
+        //Highlight the key buttons
+        mouseClicked = Input.GetMouseButton(0);
+        foreach (KeyButton kb in keyButtons)
+        {
+            kb.updateHighlight(mousePos, mouseClicked, colorScheme);
+        }
+    }
+
     public bool processClick(Vector2 mousePos)
     {
         int newIndex = posToIndex(mousePos);
@@ -134,7 +139,7 @@ public class InstructionPanel : MonoBehaviour
         return false;
     }
 
-    private void addInstruction(Instruction inst)
+    protected virtual void addInstruction(Instruction inst)
     {
         target.instructions[cursor] = inst;
         Cursor++;
@@ -176,7 +181,7 @@ public class InstructionPanel : MonoBehaviour
         return index;
     }
 
-    private void updateDisplay()
+    protected virtual void updateDisplay()
     {
         Instruction.ProcessedAs[] processMap = target.getInstructionMap();
         for (int i = 0; i < Size; i++)
@@ -213,10 +218,9 @@ public class InstructionPanel : MonoBehaviour
         }
     }
 
-    public void changeTarget(BotController bc)
+    public virtual void changeTarget(BotController bc)
     {
         target = bc;
-        FindObjectOfType<TurnManager>().Paused = target != null;
         if (bc == null)
         {
             gameObject.SetActive(false);
