@@ -285,7 +285,12 @@ public class InstructionPanel : MonoBehaviour
                 GameObject keyButton = Instantiate(keyButtonPrefab);
                 keyButton.transform.parent = transform;
                 keyButton.transform.position =
-                    indexToPos(target.instructions.Count + (i * 2));
+                    basePosition
+                    + new Vector2(
+                        i % dimension,
+                        -(int)(i / dimension) * 0.5f
+                        )
+                    ;
                 KeyButton kb = keyButton.GetComponent<KeyButton>();
                 kb.keySR.sprite = keyScheme.keys[i].keySprite;
                 kb.symbolSR.sprite = target.alphabet[i].symbol;
