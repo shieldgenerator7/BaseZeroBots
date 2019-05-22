@@ -71,13 +71,35 @@ public class InputManager : MonoBehaviour
                 instructionPanel.changeTarget(null);
             }
         }
+        //Select other bot
+        if (instructionPanel.target == null)
+        {
+            bool up = Input.GetKeyDown(KeyCode.UpArrow);
+            bool down = Input.GetKeyDown(KeyCode.DownArrow);
+            bool left = Input.GetKeyDown(KeyCode.LeftArrow);
+            bool right = Input.GetKeyDown(KeyCode.RightArrow);
+            if (up || down || left || right)
+            {
+                int direction = (up || right) ? 1 : -1;
+                List<BotController> bots = new List<BotController>(FindObjectsOfType<BotController>());
+                int index = bots.IndexOf(CurrentBot);
+                index += direction;
+                index = (int)Mathf.Repeat(index, bots.Count);
+                CurrentBot = bots[index];
+            }
+        }
     }
 
     private void LateUpdate()
     {
         if (mostRecentBot)
         {
+            botCursor.SetActive(true);
             botCursor.transform.position = mostRecentBot.transform.position;
+        }
+        else
+        {
+            botCursor.SetActive(false);
         }
     }
 }
