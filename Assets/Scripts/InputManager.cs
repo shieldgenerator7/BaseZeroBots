@@ -94,6 +94,20 @@ public class InputManager : MonoBehaviour
                 LevelManager lm = FindObjectOfType<LevelManager>();
                 lm.LoadLevel(lm.LevelIndex);
             }
+
+            //Next Level
+            if (Input.GetKeyDown(KeyCode.RightBracket))
+            {
+                LevelManager lm = FindObjectOfType<LevelManager>();
+                lm.LevelIndex++;
+            }
+
+            //Previous Level
+            if (Input.GetKeyDown(KeyCode.LeftBracket))
+            {
+                LevelManager lm = FindObjectOfType<LevelManager>();
+                lm.LevelIndex--;
+            }
         }
     }
 
