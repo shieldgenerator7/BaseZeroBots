@@ -205,6 +205,7 @@ MonoBehaviour:
   keySchemes:
   - {fileID: 11400000, guid: 784cec6ef753a98429d294d326bf0cdf, type: 2}
   - {fileID: 11400000, guid: ad03a8db6cd74f140911cc990a458322, type: 2}
+  - {fileID: 11400000, guid: 9a174a01f51228d429d3f768f8320709, type: 2}
   target: {fileID: 0}
   defaultInstruction: {fileID: 11400000, guid: 4c8cdb2f061bf994aabc3ef05c1c852e, type: 2}
   keyButtonPrefab: {fileID: 732931394606347962, guid: 56c81ebdd355b7640b6268cb6f82c094,
