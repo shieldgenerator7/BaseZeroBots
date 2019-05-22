@@ -20,6 +20,11 @@ public class BotEditPanel : MonoBehaviour
         {
             panels[currentPanelIndex].changeTarget(null);
             currentPanelIndex = (int)Mathf.Repeat(value, panels.Count);
+            //Lock the panel if the bot is not on an electric ground
+            panels[currentPanelIndex].Locked =
+                GridManager.tileAtPosition(target.transform.position)
+                .type != AreaTile.AreaType.GROUND_ELECTRIC;
+            //Open the new current panel
             panels[currentPanelIndex].changeTarget(target);
         }
     }

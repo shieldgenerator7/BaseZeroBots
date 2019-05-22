@@ -126,6 +126,11 @@ public class GridManager : MonoBehaviour
         return oldPos;
     }
 
+    public static AreaTile tileAtPosition(Vector2 pos)
+    {
+        return areaGrid[(int)pos.x, (int)pos.y];
+    }
+
     public static GameObject objectAtPosition(Vector2 pos)
     {
         return grid[(int)pos.x, (int)pos.y];

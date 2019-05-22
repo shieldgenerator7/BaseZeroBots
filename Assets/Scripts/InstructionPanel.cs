@@ -14,7 +14,7 @@ public class InstructionPanel : MonoBehaviour
             dimension = Mathf.Max(1, dimension);
         }
     }
-    
+
     public List<KeyScheme> keySchemes;
 
     public BotController target;
@@ -40,6 +40,13 @@ public class InstructionPanel : MonoBehaviour
     }
     private int prevCursor = -1;
 
+    private bool locked = false;
+    public bool Locked
+    {
+        get { return locked; }
+        set { locked = value; }
+    }
+
     public Vector2 offset;
     protected List<SpriteRenderer> instSprites = new List<SpriteRenderer>();
 
@@ -53,7 +60,10 @@ public class InstructionPanel : MonoBehaviour
     private void Update()
     {
         //Check for adding an instruction
-        checkSymbolInput();
+        if (!Locked)
+        {
+            checkSymbolInput();
+        }
         //Check for navigating the grid
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -71,7 +81,10 @@ public class InstructionPanel : MonoBehaviour
         {
             Cursor += dimension;
         }
-        if (Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftControl))
+        if (!Locked
+            && Input.GetKeyDown(KeyCode.Tab)
+            && !Input.GetKey(KeyCode.LeftControl)
+            )
         {
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
@@ -267,40 +280,43 @@ public class InstructionPanel : MonoBehaviour
             //
             //Show keys
             //
-            Vector2 basePosition = indexToPos(target.instructions.Count);
-            //Select key scheme
-            KeyScheme keyScheme = keySchemes[keySchemes.Count - 1];
-            foreach (KeyScheme ks in keySchemes)
-            {
-                if (ks.amountOfKeys == target.alphabet.Count)
-                {
-                    keyScheme = ks;
-                    break;
-                }
-            }
             //Remove previous key buttons
             foreach (KeyButton kb in keyButtons)
             {
                 Destroy(kb.gameObject);
             }
             keyButtons.Clear();
-            //Generate new key buttons
-            for (i = 0; i < target.alphabet.Count; i++)
+            if (!Locked)
             {
-                GameObject keyButton = Instantiate(keyButtonPrefab);
-                keyButton.transform.parent = transform;
-                keyButton.transform.position =
-                    basePosition
-                    + new Vector2(
-                        i % dimension,
-                        -(int)(i / dimension) * 0.5f
-                        )
-                    ;
-                KeyButton kb = keyButton.GetComponent<KeyButton>();
-                kb.keySR.sprite = keyScheme.keys[i].keySprite;
-                kb.symbolSR.sprite = target.alphabet[i].symbol;
-                kb.key = keyScheme.keys[i];
-                keyButtons.Add(kb);
+                Vector2 basePosition = indexToPos(target.instructions.Count);
+                //Select key scheme
+                KeyScheme keyScheme = keySchemes[keySchemes.Count - 1];
+                foreach (KeyScheme ks in keySchemes)
+                {
+                    if (ks.amountOfKeys == target.alphabet.Count)
+                    {
+                        keyScheme = ks;
+                        break;
+                    }
+                }
+                //Generate new key buttons
+                for (i = 0; i < target.alphabet.Count; i++)
+                {
+                    GameObject keyButton = Instantiate(keyButtonPrefab);
+                    keyButton.transform.parent = transform;
+                    keyButton.transform.position =
+                        basePosition
+                        + new Vector2(
+                            i % dimension,
+                            -(int)(i / dimension) * 0.5f
+                            )
+                        ;
+                    KeyButton kb = keyButton.GetComponent<KeyButton>();
+                    kb.keySR.sprite = keyScheme.keys[i].keySprite;
+                    kb.symbolSR.sprite = target.alphabet[i].symbol;
+                    kb.key = keyScheme.keys[i];
+                    keyButtons.Add(kb);
+                }
             }
         }
     }
