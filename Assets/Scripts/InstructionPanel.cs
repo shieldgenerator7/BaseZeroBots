@@ -19,6 +19,7 @@ public class InstructionPanel : MonoBehaviour
 
     public BotController target;
     public Instruction defaultInstruction;
+    public Sprite crackedSprite;
     public GameObject keyButtonPrefab;
     public GameObject instructionPrefab;
     public GameObject cursorObject;
@@ -154,7 +155,10 @@ public class InstructionPanel : MonoBehaviour
 
     protected virtual void addInstruction(Instruction inst)
     {
-        target.instructions[cursor] = inst;
+        if (target.instructions[cursor] != null)
+        {
+            target.instructions[cursor] = inst;
+        }
         Cursor++;
     }
 
@@ -199,7 +203,14 @@ public class InstructionPanel : MonoBehaviour
         Instruction.ProcessedAs[] processMap = target.getInstructionMap();
         for (int i = 0; i < Size; i++)
         {
-            instSprites[i].sprite = target.instructions[i].symbol;
+            if (target.instructions[i])
+            {
+                instSprites[i].sprite = target.instructions[i].symbol;
+            }
+            else
+            {
+                instSprites[i].sprite = crackedSprite;
+            }
             instSprites[i].transform.position = indexToPos(i);
             instSprites[i].color = colorScheme.getColor(processMap[i]);
         }
@@ -216,7 +227,8 @@ public class InstructionPanel : MonoBehaviour
                 Destroy(go);
             }
             highlightFrames.Clear();
-            if (processMap[Cursor] != Instruction.ProcessedAs.CONSTANT)
+            if (processMap[Cursor] != Instruction.ProcessedAs.CONSTANT
+                && target.instructions[Cursor] != null)
             {
                 ProcessContext context = new ProcessContext(target, Cursor);
                 int[] paramIndices = target.instructions[Cursor].getParameterIndices(context);

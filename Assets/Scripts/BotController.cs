@@ -50,7 +50,7 @@ public class BotController : Entity
             bool instFound = false;
             foreach (Instruction inst in instructions)
             {
-                if (inst.lifeInstruction)
+                if (inst != null)
                 {
                     instFound = true;
                     break;
@@ -70,7 +70,7 @@ public class BotController : Entity
         for (int i = 0; i < damageAmount; i++)
         {
             int randomIndex = Random.Range(0, instructions.Count);
-            destroyInstruction(randomIndex, doNothingInstruction);
+            destroyInstruction(randomIndex, null);
         }
     }
 
@@ -85,7 +85,7 @@ public class BotController : Entity
             indicesToDestroy.Add(index, replacement);
         }
     }
-    
+
     /// <summary>
     /// Returns a list that shows how each instruction will be processed
     /// </summary>
@@ -95,8 +95,11 @@ public class BotController : Entity
         Instruction.ProcessedAs[] processMap = new Instruction.ProcessedAs[instructions.Count];
         for (int i = 0; i < instructions.Count; i++)
         {
+            if (instructions[i] != null)
+            {
                 ProcessContext context = new ProcessContext(this, i);
                 instructions[i].updateInstructionMap(context, ref processMap);
+            }
         }
         return processMap;
     }

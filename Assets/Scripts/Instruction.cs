@@ -66,6 +66,10 @@ public class Instruction : ScriptableObject
 
     public void updateInstructionMap(ProcessContext context, ref ProcessedAs[] processMap)
     {
+        if (context.instruction() == null)
+        {
+            return;
+        }
         ProcessedAs currentPA = processMap[context.Index];
         if (currentPA == ProcessedAs.CONSTANT)
         {
@@ -82,7 +86,7 @@ public class Instruction : ScriptableObject
                 currentPA = processMap[context.Index] = ProcessedAs.QUERY;
             }
         }
-        int lastIndex = context.next();
+        int lastIndex = context.next(context.Index, false);
         for (int i = 0; i < parameters.Count; i++)
         {
             if (lastIndex >= context.Count)

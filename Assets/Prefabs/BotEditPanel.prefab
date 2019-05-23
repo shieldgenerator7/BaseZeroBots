@@ -67,6 +67,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9a174a01f51228d429d3f768f8320709, type: 2}
   target: {fileID: 0}
   defaultInstruction: {fileID: 11400000, guid: 4c8cdb2f061bf994aabc3ef05c1c852e, type: 2}
+  crackedSprite: {fileID: 0}
   keyButtonPrefab: {fileID: 0}
   instructionPrefab: {fileID: 1361737343417213753, guid: fe1c0279b910e134fa586788fa055901,
     type: 3}
@@ -214,6 +215,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6001290478280577639, guid: 13b371f5711d9124bbf8bba752ff430f,
+        type: 3}
+      propertyPath: crackedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e5fdbff6b1ec87a4bbaf8130687cb08b,
+        type: 3}
     - target: {fileID: 6001290478280577637, guid: 13b371f5711d9124bbf8bba752ff430f,
         type: 3}
       propertyPath: m_LocalPosition.x
