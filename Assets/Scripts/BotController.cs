@@ -24,11 +24,12 @@ public class BotController : Entity
         while (i < instructions.Count)
         {
             Instruction inst = instructions[i];
-            if (inst)
+            if (inst != null)
             {
                 ProcessContext context = new ProcessContext(this, i);
                 inst.doAction(context);
-                i = inst.getLastParameterIndex(context) + 1;
+                i = inst.getLastParameterIndex(context);
+                i = context.next(i, false);
             }
         }
         moveDirection.x = (moveDirection.x == 0) ? 0 : Mathf.Sign(moveDirection.x);

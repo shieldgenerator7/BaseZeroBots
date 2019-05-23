@@ -40,7 +40,7 @@ public class ProcessContext
         return botController.instructions[index];
     }
 
-    public int next(int index = -1)
+    public int next(int index = -1, bool loop = true)
     {
         if (index < 0)
         {
@@ -49,17 +49,23 @@ public class ProcessContext
         do
         {
             index++;
-            index = (int)Mathf.Repeat(
-                index,
-                botController.instructions.Count
-                );
+            if (loop)
+            {
+                index = (int)Mathf.Repeat(
+                    index,
+                    botController.instructions.Count
+                    );
+            }
         }
         //keep searching until you find one that's not null
-        while (botController.instructions[index] == null);
+        while (
+            index >= 0 && index < botController.instructions.Count
+            && botController.instructions[index] == null
+        );
         return index;
     }
 
-    public int prev(int index = -1)
+    public int prev(int index = -1, bool loop = true)
     {
         if (index < 0)
         {
@@ -68,13 +74,19 @@ public class ProcessContext
         do
         {
             index--;
-            index = (int)Mathf.Repeat(
-                index,
-                botController.instructions.Count
-                );
+            if (loop)
+            {
+                index = (int)Mathf.Repeat(
+                    index,
+                    botController.instructions.Count
+                    );
+            }
         }
         //keep searching until you find one that's not null
-        while (botController.instructions[index] == null);
+        while (
+            index >= 0 && index < botController.instructions.Count
+            && botController.instructions[index] == null
+        );
         return index;
     }
 
