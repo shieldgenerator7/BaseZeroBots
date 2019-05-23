@@ -8,6 +8,7 @@ public class BotController : Entity
     public List<Instruction> instructions;
     public List<Instruction> alphabet;
     public Instruction doNothingInstruction;
+    public Instruction brokenInstruction;
 
     public Dictionary<int, object> memory = new Dictionary<int, object>();
 
@@ -50,7 +51,8 @@ public class BotController : Entity
             bool instFound = false;
             foreach (Instruction inst in instructions)
             {
-                if (inst != null)
+                if (inst != null
+                    && inst.name != "BROKEN")
                 {
                     instFound = true;
                     break;
@@ -70,7 +72,7 @@ public class BotController : Entity
         for (int i = 0; i < damageAmount; i++)
         {
             int randomIndex = Random.Range(0, instructions.Count);
-            destroyInstruction(randomIndex, null);
+            destroyInstruction(randomIndex, brokenInstruction);
         }
     }
 

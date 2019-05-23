@@ -151,4 +151,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 32cbf70cca5614347be6966dbb3c0f6e, type: 2}
   doNothingInstruction: {fileID: 11400000, guid: 4c8cdb2f061bf994aabc3ef05c1c852e,
     type: 2}
+  brokenInstruction: {fileID: 11400000, guid: 4f398066ba555f349a5661d5e916e0ff, type: 2}
   moveDirection: {x: 0, y: 0, z: 0}

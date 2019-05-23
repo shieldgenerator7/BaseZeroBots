@@ -155,7 +155,8 @@ public class InstructionPanel : MonoBehaviour
 
     protected virtual void addInstruction(Instruction inst)
     {
-        if (target.instructions[cursor] != null)
+        if (target.instructions[cursor] != null
+            && target.instructions[cursor].name != "BROKEN")
         {
             target.instructions[cursor] = inst;
         }
