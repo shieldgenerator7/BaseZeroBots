@@ -69,10 +69,26 @@ public class BotController : Entity
 
     public void damage(int damageAmount)
     {
+        //Get list of undamaged instructions
+        List<int> undamagedIndices = new List<int>();
+        for (int i = 0; i < instructions.Count; i++)
+        {
+            Instruction inst = instructions[i];
+            if (inst != null)
+            {
+                undamagedIndices.Add(i);
+            }
+        }
+        //Randomly choose which indices to damage
         for (int i = 0; i < damageAmount; i++)
         {
-            int randomIndex = Random.Range(0, instructions.Count);
-            destroyInstruction(randomIndex, brokenInstruction);
+            if (undamagedIndices.Count > 0)
+            {
+                int randomIndex = Random.Range(0, undamagedIndices.Count);
+                int damagedIndex = undamagedIndices[randomIndex];
+                undamagedIndices.RemoveAt(randomIndex);
+                destroyInstruction(damagedIndex, brokenInstruction);
+            }
         }
     }
 
