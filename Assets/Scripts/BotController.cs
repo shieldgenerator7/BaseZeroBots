@@ -74,7 +74,8 @@ public class BotController : Entity
         for (int i = 0; i < instructions.Count; i++)
         {
             Instruction inst = instructions[i];
-            if (inst != null)
+            if (inst != null
+                && inst.name != "BROKEN")
             {
                 undamagedIndices.Add(i);
             }
