@@ -108,6 +108,13 @@ public class InputManager : MonoBehaviour
                 LevelManager lm = FindObjectOfType<LevelManager>();
                 lm.LevelIndex--;
             }
+
+            //Leave Game
+            if (Input.GetKeyDown(KeyCode.W)
+                && Input.GetKey(KeyCode.LeftControl))
+            {
+                Application.Quit();
+            }
         }
     }
 
