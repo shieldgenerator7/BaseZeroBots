@@ -14,20 +14,20 @@ public class MoveInDirection : Instruction
     }
     public Direction direction;
 
-    public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override void doAction(ProcessContext context)
     {
-        Vector3 pos = instructionToDirection(bc, currentIndex, instructions);
-        bc.moveDirection += pos;
+        Vector3 pos = instructionToDirection(context);
+        context.botController.moveDirection += pos;
     }
 
-    public override bool testCondition(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override bool testCondition(ProcessContext context)
     {
-        Vector3 pos = instructionToDirection(bc, currentIndex, instructions);
-        pos = bc.transform.TransformDirection(pos);
-        return GridManager.objectAtPosition(bc.transform.position + pos) == null;
+        Vector3 pos = instructionToDirection(context);
+        pos = context.botController.transform.TransformDirection(pos);
+        return GridManager.objectAtPosition(context.botController.transform.position + pos) == null;
     }
 
-    public override Vector2 instructionToDirection(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override Vector2 instructionToDirection(ProcessContext context)
     {
         switch (direction)
         {

@@ -10,7 +10,7 @@ public class Comparator : Instruction
     public bool greaterThan;
     public bool equalTo;
 
-    //public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    //public override void doAction(ProcessContext context)
     //{
     //    int[] paramIndices = getParameterIndices(currentIndex, instructions);
     //    if (testCondition(bc, currentIndex, instructions))
@@ -27,14 +27,16 @@ public class Comparator : Instruction
     //    }
     //}
 
-    public override bool testCondition(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override bool testCondition(ProcessContext context)
     {
-        int[] paramIndices = getParameterIndices(currentIndex, instructions);
+        int[] paramIndices = getParameterIndices(context);
         //Process the comparator
         int param1 = paramIndices[0];
-        float and1 = instructions[param1].instructionToNumber(bc, param1, instructions);
+        float and1 = context.instruction(param1)
+            .instructionToNumber(context.context(param1));
         int param2 = paramIndices[1];
-        float and2 = instructions[param2].instructionToNumber(bc, param2, instructions);
+        float and2 = context.instruction(param2)
+            .instructionToNumber(context.context(param2));
         if (lessThan)
         {
             if (and1 < and2)

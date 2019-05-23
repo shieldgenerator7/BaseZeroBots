@@ -13,13 +13,14 @@ public class MoveToPosition : Instruction
     }
     public Option option;
 
-    public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override void doAction(ProcessContext context)
     {
-        int[] paramIndices = getParameterIndices(currentIndex, instructions);
+        int[] paramIndices = getParameterIndices(context);
         int param1 = paramIndices[0];
-        Vector3 position = instructions[param1].
-            instructionToPosition(bc, param1, instructions);
+        Vector3 position = context.instruction(param1).
+            instructionToPosition(context.context(param1));
         Vector2 moveDir = Vector2.zero;
+        BotController bc = context.botController;
         switch (option)
         {
             case Option.TOWARDS:

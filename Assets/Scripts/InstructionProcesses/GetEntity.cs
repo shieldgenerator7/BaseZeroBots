@@ -22,25 +22,26 @@ public class GetEntity : Instruction
     }
     public EntityType entityType;
 
-    public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override void doAction(ProcessContext context)
     {
-        instructionToEntity(bc, currentIndex, instructions);
+        instructionToEntity(context);
     }
 
-    public override Entity instructionToEntity(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override Entity instructionToEntity(ProcessContext context)
     {
         if (option == Option.SELF)
         {
-            return bc;
+            return context.botController;
         }
         if (option == Option.IN_DIRECTION)
         {
-            int[] paramIndices = getParameterIndices(currentIndex, instructions);
+            int[] paramIndices = getParameterIndices(context);
             int param1 = paramIndices[0];
-            Vector2 direction = instructions[param1].instructionToDirection(bc, currentIndex, instructions);
+            Vector2 direction = context.instruction(param1)
+                .instructionToDirection(context.context(param1));
             Entity entity = GridManager.nextObjectInDirection(
-                bc.transform.position,
-                bc.transform.TransformDirection(direction),
+                context.botController.transform.position,
+                context.botController.transform.TransformDirection(direction),
                 true
                 );
             return entity;
@@ -56,9 +57,13 @@ public class GetEntity : Instruction
         Entity target = null;
         foreach (Entity fbc in FindObjectsOfType<Entity>())
         {
-            if (fbc != bc && fbc.getTypeString() == targetTypeString)
+            if (fbc != context.botController
+                && fbc.getTypeString() == targetTypeString)
             {
-                float distance = Vector3.Distance(bc.transform.position, fbc.transform.position);
+                float distance = Vector3.Distance(
+                    context.botController.transform.position,
+                    fbc.transform.position
+                    );
                 switch (option)
                 {
                     case Option.CLOSEST:

@@ -26,8 +26,9 @@ public class BotController : Entity
             Instruction inst = instructions[i];
             if (inst)
             {
-                inst.doAction(this, i, instructions);
-                i = inst.getLastParameterIndex(i, instructions) + 1;
+                ProcessContext context = new ProcessContext(this, i);
+                inst.doAction(context);
+                i = inst.getLastParameterIndex(context) + 1;
             }
         }
         moveDirection.x = (moveDirection.x == 0) ? 0 : Mathf.Sign(moveDirection.x);
@@ -93,7 +94,8 @@ public class BotController : Entity
         Instruction.ProcessedAs[] processMap = new Instruction.ProcessedAs[instructions.Count];
         for (int i = 0; i < instructions.Count; i++)
         {
-            instructions[i].updateInstructionMap(i, instructions, ref processMap);
+                ProcessContext context = new ProcessContext(this, i);
+                instructions[i].updateInstructionMap(context, ref processMap);
         }
         return processMap;
     }

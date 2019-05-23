@@ -33,43 +33,40 @@ public class Instruction : ScriptableObject
         CONSTANT
     }
 
-    public int[] getParameterIndices(int currentIndex, List<Instruction> instructions)
+    public int[] getParameterIndices(ProcessContext context)
     {
         int[] paramIndices = new int[parameters.Count];
-        int paramIndex = currentIndex + 1;
+        int paramIndex = context.next();
         for (int i = 0; i < parameters.Count; i++)
         {
-            paramIndex = (int)Mathf.Repeat(paramIndex, instructions.Count);
             paramIndices[i] = paramIndex;
-            if (validParameter(parameters[i], instructions[paramIndex]))
+            if (validParameter(parameters[i], context.instruction(paramIndex)))
             {
-                paramIndex = instructions[paramIndex].getLastParameterIndex(paramIndex, instructions);
+                paramIndex = context.getLastParameterIndex(paramIndex);
             }
-            paramIndex++;
+            paramIndex = context.next(paramIndex);
         }
         return paramIndices;
     }
 
-    public int getLastParameterIndex(int currentIndex, List<Instruction> instructions)
+    public int getLastParameterIndex(ProcessContext context)
     {
-        int lastIndex = currentIndex + 1;
+        int lastIndex = context.next();
         for (int i = 0; i < parameters.Count; i++)
         {
-            lastIndex = (int)Mathf.Repeat(lastIndex, instructions.Count);
-            if (validParameter(parameters[i], instructions[lastIndex]))
+            if (validParameter(parameters[i], context.instruction(lastIndex)))
             {
-                lastIndex = instructions[lastIndex].getLastParameterIndex(lastIndex, instructions);
+                lastIndex = context.getLastParameterIndex(lastIndex);
             }
-            lastIndex++;
+            lastIndex = context.next(lastIndex);
         }
-        lastIndex--;
-        lastIndex = (int)Mathf.Repeat(lastIndex, instructions.Count);
+        lastIndex = context.prev(lastIndex);
         return lastIndex;
     }
 
-    public void updateInstructionMap(int currentIndex, List<Instruction> instructions, ref ProcessedAs[] processMap)
+    public void updateInstructionMap(ProcessContext context, ref ProcessedAs[] processMap)
     {
-        ProcessedAs currentPA = processMap[currentIndex];
+        ProcessedAs currentPA = processMap[context.Index];
         if (currentPA == ProcessedAs.CONSTANT)
         {
             return;
@@ -78,25 +75,25 @@ public class Instruction : ScriptableObject
         {
             if (command)
             {
-                currentPA = processMap[currentIndex] = ProcessedAs.COMMAND;
+                currentPA = processMap[context.Index] = ProcessedAs.COMMAND;
             }
             if (returnTypes.Count > 0)
             {
-                currentPA = processMap[currentIndex] = ProcessedAs.QUERY;
+                currentPA = processMap[context.Index] = ProcessedAs.QUERY;
             }
         }
-        int lastIndex = currentIndex + 1;
+        int lastIndex = context.next();
         for (int i = 0; i < parameters.Count; i++)
         {
-            if (lastIndex >= instructions.Count)
+            if (lastIndex >= context.Count)
             {
                 //don't re-paint-process the instructions at the beginning
                 break;
             }
-            if (validParameter(parameters[i], instructions[lastIndex]))
+            if (validParameter(parameters[i], context.instruction(lastIndex)))
             {
                 if (parameters[i] == ReturnType.NONE
-                    && instructions[lastIndex].command)
+                    && context.instruction(lastIndex).command)
                 {
                     processMap[lastIndex] = ProcessedAs.COMMAND;
                 }
@@ -104,13 +101,13 @@ public class Instruction : ScriptableObject
                 {
                     processMap[lastIndex] = ProcessedAs.QUERY;
                 }
-                lastIndex = instructions[lastIndex].getLastParameterIndex(lastIndex, instructions);
+                lastIndex = context.getLastParameterIndex(lastIndex);
             }
             else
             {
                 processMap[lastIndex] = ProcessedAs.CONSTANT;
             }
-            lastIndex++;
+            lastIndex = context.next(lastIndex);
         }
     }
 
@@ -121,42 +118,44 @@ public class Instruction : ScriptableObject
             || parameter == ReturnType.NONE;
     }
 
-    public virtual void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    public virtual void doAction(ProcessContext context)
     {
     }
 
-    public object getReturnObject(BotController bc, int currentIndex, List<Instruction> instructions)
+    public object getReturnObject(ProcessContext context)
     {
         switch (returnTypes[0])
         {
             case ReturnType.BOOL:
-                return testCondition(bc, currentIndex, instructions);
+                return testCondition(context);
             case ReturnType.NUMBER:
-                return instructionToNumber(bc, currentIndex, instructions);
+                return instructionToNumber(context);
             case ReturnType.POSITION:
-                return instructionToPosition(bc, currentIndex, instructions);
+                return instructionToPosition(context);
             case ReturnType.DIRECTION:
-                return instructionToDirection(bc, currentIndex, instructions);
+                return instructionToDirection(context);
             case ReturnType.ENTITY:
-                return instructionToEntity(bc, currentIndex, instructions);
+                return instructionToEntity(context);
             case ReturnType.OBJECT:
-                return instructionToObject(bc, currentIndex, instructions);
+                return instructionToObject(context);
             default:
                 return null;
         }
     }
 
-    public virtual bool testCondition(BotController bc, int currentIndex, List<Instruction> instructions)
+    public virtual bool testCondition(ProcessContext context)
     {
         return false;
     }
 
-    public virtual float instructionToNumber(BotController bc, int currentIndex, List<Instruction> instructions)
+    public virtual float instructionToNumber(ProcessContext context)
     {
-        return bc.alphabet.IndexOf(instructions[currentIndex]);
+        return context.botController.alphabet.IndexOf(
+            context.instruction()
+            );
     }
 
-    public virtual Vector2 instructionToPosition(BotController bc, int currentIndex, List<Instruction> instructions)
+    public virtual Vector2 instructionToPosition(ProcessContext context)
     {
         return Vector2.zero;
     }
@@ -168,17 +167,17 @@ public class Instruction : ScriptableObject
     /// <param name="currentIndex"></param>
     /// <param name="instructions"></param>
     /// <returns></returns>
-    public virtual Vector2 instructionToDirection(BotController bc, int currentIndex, List<Instruction> instructions)
+    public virtual Vector2 instructionToDirection(ProcessContext context)
     {
         return Vector2.zero;
     }
 
-    public virtual Entity instructionToEntity(BotController bc, int currentIndex, List<Instruction> instructions)
+    public virtual Entity instructionToEntity(ProcessContext context)
     {
         return null;
     }
 
-    public virtual object instructionToObject(BotController bc, int currentIndex, List<Instruction> instructions)
+    public virtual object instructionToObject(ProcessContext context)
     {
         return null;
     }

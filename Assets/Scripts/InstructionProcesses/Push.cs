@@ -6,11 +6,13 @@ using UnityEngine;
 public class Push : Instruction
 {
     
-    public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override void doAction(ProcessContext context)
     {
-        int[] paramIndices = getParameterIndices(currentIndex, instructions);
+        BotController bc = context.botController;
+        int[] paramIndices = getParameterIndices(context);
         int param1 = paramIndices[0];
-        Vector2 direction = instructions[param1].instructionToDirection(bc, param1, instructions);
+        Vector2 direction = context.instruction(param1)
+            .instructionToDirection(context.context(param1));
         direction = bc.transform.TransformDirection(direction);
         Entity entity = GridManager.nextObjectInDirection(
             bc.transform.position,

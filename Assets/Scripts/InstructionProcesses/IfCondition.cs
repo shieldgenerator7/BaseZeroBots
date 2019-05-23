@@ -6,27 +6,28 @@ using UnityEngine;
 public class IfCondition : Instruction
 {
 
-    public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override void doAction(ProcessContext context)
     {
-        int[] paramIndices = getParameterIndices(currentIndex, instructions);
-        if (testCondition(bc, currentIndex, instructions))
+        int[] paramIndices = getParameterIndices(context);
+        if (testCondition(context))
         {
             int param2 = paramIndices[1];
-            instructions[param2]
-               .doAction(bc, param2, instructions);
+            context.instruction(param2)
+               .doAction(context.context(param2));
         }
         else
         {
             int param3 = paramIndices[2];
-            instructions[param3]
-                .doAction(bc, param3, instructions);
+            context.instruction(param3)
+                .doAction(context.context(param3));
         }
     }
 
-    public override bool testCondition(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override bool testCondition(ProcessContext context)
     {
-        int[] paramIndices = getParameterIndices(currentIndex, instructions);
+        int[] paramIndices = getParameterIndices(context);
         int param1 = paramIndices[0];
-        return instructions[param1].testCondition(bc, param1, instructions);
+        return context.instruction(param1)
+            .testCondition(context.context(param1));
     }
 }

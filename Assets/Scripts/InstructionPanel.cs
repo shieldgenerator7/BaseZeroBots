@@ -218,7 +218,8 @@ public class InstructionPanel : MonoBehaviour
             highlightFrames.Clear();
             if (processMap[Cursor] != Instruction.ProcessedAs.CONSTANT)
             {
-                int[] paramIndices = target.instructions[Cursor].getParameterIndices(Cursor, target.instructions);
+                ProcessContext context = new ProcessContext(target, Cursor);
+                int[] paramIndices = target.instructions[Cursor].getParameterIndices(context);
                 for (int i = 0; i < paramIndices.Length; i++)
                 {
                     GameObject newHighlight = Instantiate(selectorPrefabSmall);

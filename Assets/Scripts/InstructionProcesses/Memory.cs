@@ -15,11 +15,12 @@ public class Memory : Instruction
     [Header("Memory")]
     public Option option;
 
-    private int getMemoryLocation(BotController bc, int currentIndex, List<Instruction> instructions)
+    private int getMemoryLocation(ProcessContext context)
     {
-        int[] paramIndices = getParameterIndices(currentIndex, instructions);
+        int[] paramIndices = getParameterIndices(context);
         int param1 = paramIndices[0];
-        int memoryLocation = (int)instructions[param1].instructionToNumber(bc, param1, instructions);
+        int memoryLocation = (int)context.instruction(param1)
+            .instructionToNumber(context.context(param1));
         Debug.Log("Getting memory location["+memoryLocation+"]");
         return memoryLocation;
     }
@@ -32,16 +33,19 @@ public class Memory : Instruction
             ;
     }
 
-    public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override void doAction(ProcessContext context)
     {
-        int[] paramIndices = getParameterIndices(currentIndex, instructions);
+        int[] paramIndices = getParameterIndices(context);
         int param1 = paramIndices[0];
-        int memoryLocation = (int)instructions[param1].instructionToNumber(bc, param1, instructions);
+        int memoryLocation = (int)context.instruction(param1)
+            .instructionToNumber(context.context(param1));
+        BotController bc = context.botController;
         switch (option)
         {
             case Option.STORE:
                 int param2 = paramIndices[1];
-                object storeObject = instructions[param2].getReturnObject(bc, param2, instructions);
+                object storeObject = context.instruction(param2)
+                    .getReturnObject(context.context(param2));
                 if (!bc.memory.ContainsKey(memoryLocation))
                 {
                     bc.memory.Add(memoryLocation, storeObject);
@@ -58,9 +62,10 @@ public class Memory : Instruction
         }
     }
 
-    public override bool testCondition(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override bool testCondition(ProcessContext context)
     {
-        int memoryLocation = getMemoryLocation(bc, currentIndex, instructions);
+        int memoryLocation = getMemoryLocation(context);
+        BotController bc = context.botController;
         switch (option)
         {
             case Option.STORE:
@@ -75,43 +80,47 @@ public class Memory : Instruction
         }
     }
 
-    public override float instructionToNumber(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override float instructionToNumber(ProcessContext context)
     {
-        int memoryLocation = getMemoryLocation(bc, currentIndex, instructions);
+        int memoryLocation = getMemoryLocation(context);
+        BotController bc = context.botController;
         if (canAccessMemory(bc, memoryLocation, typeof(float)))
         {
             return (float)bc.memory[memoryLocation];
         }
-        return base.instructionToNumber(bc, currentIndex, instructions);
+        return base.instructionToNumber(context);
     }
 
-    public override Vector2 instructionToPosition(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override Vector2 instructionToPosition(ProcessContext context)
     {
-        int memoryLocation = getMemoryLocation(bc, currentIndex, instructions);
+        int memoryLocation = getMemoryLocation(context);
+        BotController bc = context.botController;
         if (canAccessMemory(bc, memoryLocation, typeof(Vector2)))
         {
             return (Vector2)bc.memory[memoryLocation];
         }
-        return base.instructionToPosition(bc, currentIndex, instructions);
+        return base.instructionToPosition(context);
     }
 
-    public override Entity instructionToEntity(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override Entity instructionToEntity(ProcessContext context)
     {
-        int memoryLocation = getMemoryLocation(bc, currentIndex, instructions);
+        int memoryLocation = getMemoryLocation(context);
+        BotController bc = context.botController;
         if (canAccessMemory(bc, memoryLocation, typeof(BotController)))
         {
             return (Entity)bc.memory[memoryLocation];
         }
-        return base.instructionToEntity(bc, currentIndex, instructions);
+        return base.instructionToEntity(context);
     }
 
-    public override object instructionToObject(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override object instructionToObject(ProcessContext context)
     {
-        int memoryLocation = getMemoryLocation(bc, currentIndex, instructions);
+        int memoryLocation = getMemoryLocation(context);
+        BotController bc = context.botController;
         if (canAccessMemory(bc, memoryLocation, typeof(object)))
         {
             return bc.memory[memoryLocation];
         }
-        return base.instructionToObject(bc, currentIndex, instructions);
+        return base.instructionToObject(context);
     }
 }

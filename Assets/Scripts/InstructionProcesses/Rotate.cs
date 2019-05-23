@@ -7,8 +7,8 @@ public class Rotate : Instruction
 {
     public float angle = 90;
 
-    public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override void doAction(ProcessContext context)
     {
-        bc.transform.Rotate(-Vector3.forward, angle);
+        context.botController.transform.Rotate(-Vector3.forward, angle);
     }
 }

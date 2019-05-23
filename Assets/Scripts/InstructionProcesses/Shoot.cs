@@ -8,8 +8,9 @@ public class Shoot : Instruction
 
     public GameObject projectilePrefab;
 
-    public override void doAction(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override void doAction(ProcessContext context)
     {
+        BotController bc = context.botController;
         GameObject projectile = Instantiate(projectilePrefab);
         projectile.transform.up = bc.transform.up;
         projectile.transform.localPosition = bc.transform.localPosition + bc.transform.up;

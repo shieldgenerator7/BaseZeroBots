@@ -5,15 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PositionOf", menuName = "Instruction/PositionOf", order = 1)]
 public class PositionOf : Instruction
 {
-    public override Vector2 instructionToPosition(BotController bc, int currentIndex, List<Instruction> instructions)
+    public override Vector2 instructionToPosition(ProcessContext context)
     {
-        int[] paramIndices = getParameterIndices(currentIndex, instructions);
+        int[] paramIndices = getParameterIndices(context);
         int param1 = paramIndices[0];
-        Entity entity = instructions[param1].instructionToEntity(bc, param1, instructions);
+        Entity entity = context.instruction(param1)
+            .instructionToEntity(context.context(param1));
         if (entity)
         {
             return entity.transform.position;
         }
-        return base.instructionToPosition(bc, currentIndex, instructions);
+        return base.instructionToPosition(context);
     }
 }
