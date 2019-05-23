@@ -111,7 +111,7 @@ public class Instruction : ScriptableObject
             {
                 processMap[lastIndex] = ProcessedAs.CONSTANT;
             }
-            lastIndex = context.next(lastIndex);
+            lastIndex = context.next(lastIndex, false);
         }
     }
 
