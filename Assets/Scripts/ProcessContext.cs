@@ -40,12 +40,13 @@ public class ProcessContext
         return botController.instructions[index];
     }
 
-    public int next(int index = -1, bool loop = true)
+    public int next(int startIndex = -1, bool loop = true)
     {
-        if (index < 0)
+        if (startIndex < 0)
         {
-            index = currentIndex;
+            startIndex = currentIndex;
         }
+        int index = startIndex;
         do
         {
             index++;
@@ -61,16 +62,18 @@ public class ProcessContext
         while (
             index >= 0 && index < botController.instructions.Count
             && botController.instructions[index] == null
+            && index != startIndex
         );
         return index;
     }
 
-    public int prev(int index = -1, bool loop = true)
+    public int prev(int startIndex = -1, bool loop = true)
     {
-        if (index < 0)
+        if (startIndex < 0)
         {
-            index = currentIndex;
+            startIndex = currentIndex;
         }
+        int index = startIndex;
         do
         {
             index--;
@@ -86,6 +89,7 @@ public class ProcessContext
         while (
             index >= 0 && index < botController.instructions.Count
             && botController.instructions[index] == null
+            && index != startIndex
         );
         return index;
     }
