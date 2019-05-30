@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -38,9 +39,29 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Initialize
         LoadLevel(startLevelIndex);
         SceneManager.sceneLoaded += sceneLoaded;
         SceneManager.sceneUnloaded += sceneUnloaded;
+    }
+
+    public void fillLevelsArray()
+    {
+        //Fill levels array from build settings
+        //2019-05-30: copied from http://answers.unity.com/answers/1540619/view.html
+        levels = new List<string>();
+        foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+        {
+            if (scene.enabled && !scene.path.Contains("PlayScene"))
+            {
+                //String manipulation
+                string sceneName = scene.path;
+                string[] split = sceneName.Split('/','.');
+                sceneName = split[split.Length - 2];
+                //Add the scene name to the list
+                levels.Add(sceneName);
+            }
+        }
     }
 
     public void LoadLevel(int levelIndex = 0)
