@@ -33,6 +33,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/TurnRight_3.unity
     guid: 2344442727e8a84419546fac18d66a22
   - enabled: 1
+    path: Assets/Scenes/Levels/TurnRight_Summary.unity
+    guid: 4ba2089d632c70b4ebd93248f20ae93f
+  - enabled: 1
+    path: Assets/Scenes/Levels/MoveTo_PositionOf_1.unity
+    guid: baf53cf0617d9e64fb85167d3e8cb6d3
+  - enabled: 1
+    path: Assets/Scenes/Levels/MoveTo_PositionOf_2.unity
+    guid: 9e2948f6f0ff2fe4d8d2e8ba3e073aa0
+  - enabled: 1
+    path: Assets/Scenes/Levels/MoveTo_PositionOf_3.unity
+    guid: f2b9e4502f6a4684e9605c3ef115d4ca
+  - enabled: 1
+    path: Assets/Scenes/Levels/MoveTo_PositionOf_4.unity
+    guid: 61cbb3cd9fbef7c4e88891e21445c3f0
+  - enabled: 1
     path: Assets/Scenes/Levels/IfCondition_1.unity
     guid: b7e0c9aaeb82cc34f933395589f9a70d
   - enabled: 1

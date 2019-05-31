@@ -408,8 +408,13 @@ MonoBehaviour:
   - Shoot_4
   - TurnRight_1
   - TurnRight_2
+  - TurnRight_3
   - IfCondition_1
   - IfCondition_Summary
+  - MoveTo_PositionOf_1
+  - MoveTo_PositionOf_2
+  - MoveTo_PositionOf_3
+  - MoveTo_PositionOf_4
   - Level_Test
 --- !u!4 &1542845316
 Transform:
