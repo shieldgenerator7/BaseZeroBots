@@ -24,6 +24,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Shoot_4.unity
     guid: 99159a4010c26044180d55844908757f
   - enabled: 1
+    path: Assets/Scenes/Levels/TurnRight_1.unity
+    guid: fe90396d03819cd4bb7f822ad42d0664
+  - enabled: 1
+    path: Assets/Scenes/Levels/TurnRight_2.unity
+    guid: d96692115aafb324f91c829cb9f46940
+  - enabled: 1
+    path: Assets/Scenes/Levels/TurnRight_3.unity
+    guid: 2344442727e8a84419546fac18d66a22
+  - enabled: 1
     path: Assets/Scenes/Levels/IfCondition_1.unity
     guid: b7e0c9aaeb82cc34f933395589f9a70d
   - enabled: 1

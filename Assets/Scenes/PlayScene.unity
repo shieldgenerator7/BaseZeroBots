@@ -399,16 +399,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df12c71f09d63644ab5470e7770ab32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLevelIndex: 1
+  startLevelIndex: 0
   levels:
+  - MoveForward_1
+  - Shoot_1
+  - Shoot_2
+  - Shoot_3
+  - Shoot_4
+  - TurnRight_1
+  - TurnRight_2
+  - IfCondition_1
+  - IfCondition_Summary
   - Level_Test
-  - Level1
-  - Level2
-  - Level2.1
-  - Level2.2
-  - Level2.3
-  - Level3
-  - Level4
 --- !u!4 &1542845316
 Transform:
   m_ObjectHideFlags: 0
