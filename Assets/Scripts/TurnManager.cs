@@ -41,4 +41,8 @@ public class TurnManager : MonoBehaviour
             GridManager.checkAllAreaEffects();
         }
     }
+    public void resetTurnDelay()
+    {
+        turnDelay = 1;
+    }
 }
