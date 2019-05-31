@@ -16,7 +16,7 @@ public class TurnManager : MonoBehaviour
         {
             if (!value && paused != value)
             {
-                lastTurnTime = Time.time;
+                resetTime();
             }
             paused = value;
         }
@@ -40,6 +40,11 @@ public class TurnManager : MonoBehaviour
             }
             GridManager.checkAllAreaEffects();
         }
+    }
+
+    public void resetTime()
+    {
+        lastTurnTime = Time.time;
     }
     public void resetTurnDelay()
     {

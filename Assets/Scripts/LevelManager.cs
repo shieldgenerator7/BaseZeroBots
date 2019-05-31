@@ -73,6 +73,8 @@ public class LevelManager : MonoBehaviour
         }
         SceneManager.LoadScene(levels[levelIndex], LoadSceneMode.Additive);
         currentLevelIndex = levelIndex;
+        FindObjectOfType<TurnManager>().resetTime();
+        FindObjectOfType<TurnManager>().resetTurnDelay();
     }
 
     private void sceneLoaded(Scene s, LoadSceneMode lsm)
