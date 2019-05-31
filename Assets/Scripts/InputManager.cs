@@ -109,6 +109,20 @@ public class InputManager : MonoBehaviour
                 lm.LevelIndex--;
             }
 
+            //Speed Time Up
+            if (Input.GetKeyDown(KeyCode.Equals))
+            {
+                TurnManager tm = FindObjectOfType<TurnManager>();
+                tm.turnDelay /= 2;
+            }
+
+            //Slow Time Down
+            if (Input.GetKeyDown(KeyCode.Minus))
+            {
+                TurnManager tm = FindObjectOfType<TurnManager>();
+                tm.turnDelay *= 2;
+            }
+
             //Leave Game
             if (Input.GetKeyDown(KeyCode.W)
                 && Input.GetKey(KeyCode.LeftControl))
