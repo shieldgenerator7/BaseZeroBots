@@ -45,6 +45,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.sceneUnloaded += sceneUnloaded;
     }
 
+#if IS_UNITY_EDITOR
     public void fillLevelsArray()
     {
         //Fill levels array from build settings
@@ -63,6 +64,7 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+#endif
 
     public void LoadLevel(int levelIndex = 0)
     {

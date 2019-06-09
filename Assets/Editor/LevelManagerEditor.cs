@@ -7,6 +7,8 @@ using UnityEditor;
 [CanEditMultipleObjects]
 public class LevelManagerEditor : Editor
 {
+
+#if IS_UNITY_EDITOR
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -15,4 +17,5 @@ public class LevelManagerEditor : Editor
             ((LevelManager)target).fillLevelsArray();
         }
     }
+#endif
 }
