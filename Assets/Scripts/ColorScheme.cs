@@ -8,6 +8,8 @@ public class ColorScheme : ScriptableObject
     [Header("Selectors")]
     public Color selectColor = Color.white;
     public Color parameterHighlightColor = Color.white;
+    public Color parameterPositive = Color.white;
+    public Color parameterNegative = Color.white;
 
     [Header("Instructions")]
     public Color commandColor = Color.white;
@@ -61,6 +63,20 @@ public class ColorScheme : ScriptableObject
                 return goalColor;
             default:
                 return voidColor;
+        }
+    }
+
+    public Color getColor(Instruction.Semantic semantic)
+    {
+        switch (semantic)
+        {
+            case Instruction.Semantic.PARAMETER:
+                return parameterHighlightColor;
+            case Instruction.Semantic.POSITIVE:
+                return parameterPositive;
+            case Instruction.Semantic.NEGATIVE:
+                return parameterNegative;
+            default: return parameterHighlightColor;
         }
     }
 }

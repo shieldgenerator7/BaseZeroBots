@@ -15,6 +15,7 @@ MonoBehaviour:
   symbol: {fileID: 21300000, guid: b6a89692b1547cb4ab024e0aac30d1ab, type: 3}
   name: MemoryErase
   parameters: 02000000
+  parameterSemantic: 00000000
   keyCode: 51
   lifeInstruction: 1
   command: 1

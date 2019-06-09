@@ -15,6 +15,7 @@ MonoBehaviour:
   symbol: {fileID: 21300000, guid: c3562c22496b85f49bf6ded551a0ac08, type: 3}
   name: MemoryStore
   parameters: 0200000006000000
+  parameterSemantic: 0000000000000000
   keyCode: 49
   lifeInstruction: 1
   command: 1

@@ -238,7 +238,8 @@ public class InstructionPanel : MonoBehaviour
                     GameObject newHighlight = Instantiate(selectorPrefabSmall);
                     newHighlight.transform.parent = transform;
                     newHighlight.transform.position = indexToPos(paramIndices[i]);
-                    newHighlight.GetComponent<SpriteRenderer>().color = colorScheme.parameterHighlightColor;
+                    newHighlight.GetComponent<SpriteRenderer>().color =
+                        colorScheme.getColor(target.instructions[Cursor].parameterSemantic[i]);
                     highlightFrames.Add(newHighlight);
                 }
             }

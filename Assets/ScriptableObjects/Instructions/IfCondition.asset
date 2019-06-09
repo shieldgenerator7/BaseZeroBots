@@ -15,7 +15,8 @@ MonoBehaviour:
   symbol: {fileID: 21300000, guid: 5aa5560d0a28d0247a1f82cadea5a79d, type: 3}
   name: If
   parameters: 010000000000000000000000
+  parameterSemantic: 000000000100000002000000
   keyCode: 121
   lifeInstruction: 1
   command: 1
-  returnType: 0
+  returnTypes: 

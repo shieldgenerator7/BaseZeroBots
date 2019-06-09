@@ -15,6 +15,7 @@ MonoBehaviour:
   symbol: {fileID: 21300000, guid: 3f47af9acf5b85742a04d2bd7b4104b9, type: 3}
   name: DistanceBetween
   parameters: 0300000003000000
+  parameterSemantic: 0000000000000000
   keyCode: 98
   lifeInstruction: 1
   command: 0

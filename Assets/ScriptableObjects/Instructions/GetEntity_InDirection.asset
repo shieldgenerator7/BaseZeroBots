@@ -15,6 +15,7 @@ MonoBehaviour:
   symbol: {fileID: 21300000, guid: 2607b046d325be24bb54deacb6b2008f, type: 3}
   name: GetEntity_InDirection
   parameters: 04000000
+  parameterSemantic: 00000000
   keyCode: 106
   lifeInstruction: 1
   command: 0

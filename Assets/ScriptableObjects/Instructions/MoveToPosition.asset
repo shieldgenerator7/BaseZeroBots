@@ -15,8 +15,9 @@ MonoBehaviour:
   symbol: {fileID: 21300000, guid: dd61d68560c255541822905d41585467, type: 3}
   name: MoveToPosition
   parameters: 03000000
+  parameterSemantic: 00000000
   keyCode: 109
   lifeInstruction: 1
   command: 1
-  returnType: 0
+  returnTypes: 
   option: 0

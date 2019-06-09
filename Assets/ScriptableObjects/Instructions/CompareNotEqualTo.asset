@@ -15,6 +15,7 @@ MonoBehaviour:
   symbol: {fileID: 21300000, guid: d23b70ec33912ce499c5c6e82d0b771d, type: 3}
   name: CompareNotEqualTo
   parameters: 0200000002000000
+  parameterSemantic: 0000000000000000
   keyCode: 92
   lifeInstruction: 0
   command: 1

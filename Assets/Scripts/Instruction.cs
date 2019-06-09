@@ -8,6 +8,7 @@ public class Instruction : ScriptableObject
     public Sprite symbol;
     public new string name;
     public List<ReturnType> parameters;
+    public List<Semantic> parameterSemantic;
     public KeyCode keyCode;
 
     public bool lifeInstruction = true;//true: this instruction allows for the bot to be alive
@@ -24,6 +25,13 @@ public class Instruction : ScriptableObject
         OBJECT
     }
     public List<ReturnType> returnTypes;
+
+    public enum Semantic
+    {
+        PARAMETER,
+        POSITIVE,
+        NEGATIVE
+    }
 
     public enum ProcessedAs
     {

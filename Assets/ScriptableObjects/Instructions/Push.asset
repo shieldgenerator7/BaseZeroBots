@@ -15,6 +15,7 @@ MonoBehaviour:
   symbol: {fileID: 21300000, guid: 1489198b3f500e944a01da0b00da0859, type: 3}
   name: Push
   parameters: 04000000
+  parameterSemantic: 00000000
   keyCode: 117
   lifeInstruction: 1
   command: 1
