@@ -21,6 +21,7 @@ public class InstructionPanel : MonoBehaviour
     public Instruction defaultInstruction;
     public Sprite crackedSprite;
     public GameObject keyButtonPrefab;
+    public GameObject keyButtonLockedObject;
     public GameObject instructionPrefab;
     public GameObject cursorObject;
     public GameObject selectorPrefabSmall;
@@ -301,9 +302,12 @@ public class InstructionPanel : MonoBehaviour
                 Destroy(kb.gameObject);
             }
             keyButtons.Clear();
+            //Hide locked key
+            keyButtonLockedObject.SetActive(false);
+            //Start process of showing new keys
+            Vector2 basePosition = indexToPos(target.instructions.Count);
             if (!Locked)
             {
-                Vector2 basePosition = indexToPos(target.instructions.Count);
                 //Select key scheme
                 KeyScheme keyScheme = keySchemes[keySchemes.Count - 1];
                 foreach (KeyScheme ks in keySchemes)
@@ -332,6 +336,19 @@ public class InstructionPanel : MonoBehaviour
                     kb.key = keyScheme.keys[i];
                     keyButtons.Add(kb);
                 }
+            }
+            else
+            {
+                //Show locked key
+                i = 0;
+                keyButtonLockedObject.SetActive(true);
+                keyButtonLockedObject.transform.position =
+                    basePosition
+                    + new Vector2(
+                        i % dimension,
+                        -(int)(i / dimension) * 0.5f
+                        )
+                    ;
             }
         }
     }
