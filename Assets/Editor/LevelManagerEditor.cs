@@ -8,7 +8,7 @@ using UnityEditor;
 public class LevelManagerEditor : Editor
 {
 
-#if IS_UNITY_EDITOR
+#if UNITY_EDITOR
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
