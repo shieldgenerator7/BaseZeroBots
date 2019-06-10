@@ -402,6 +402,8 @@ MonoBehaviour:
   startLevelIndex: 0
   levels:
   - MoveForward_1
+  - MoveForward_2
+  - MoveForward_3
   - Shoot_1
   - Shoot_2
   - Shoot_3
@@ -409,12 +411,13 @@ MonoBehaviour:
   - TurnRight_1
   - TurnRight_2
   - TurnRight_3
-  - IfCondition_1
-  - IfCondition_Summary
+  - TurnRight_Summary
   - MoveTo_PositionOf_1
   - MoveTo_PositionOf_2
   - MoveTo_PositionOf_3
   - MoveTo_PositionOf_4
+  - IfCondition_1
+  - IfCondition_Summary
   - Level_Test
 --- !u!4 &1542845316
 Transform:
