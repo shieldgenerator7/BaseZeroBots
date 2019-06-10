@@ -85,13 +85,13 @@ public class Instruction : ScriptableObject
         }
         if (currentPA == ProcessedAs.DO_NOTHING)
         {
-            if (command)
-            {
-                currentPA = processMap[context.Index] = ProcessedAs.COMMAND;
-            }
             if (returnTypes.Count > 0)
             {
                 currentPA = processMap[context.Index] = ProcessedAs.QUERY;
+            }
+            if (command)
+            {
+                currentPA = processMap[context.Index] = ProcessedAs.COMMAND;
             }
         }
         int lastIndex = context.next(context.Index, false);
