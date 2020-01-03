@@ -94,8 +94,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -206,6 +206,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -485,16 +486,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 480595181098074273, guid: f939d5a2343906c4381291ecb459f379,
-        type: 3}
-      propertyPath: m_Name
-      value: BotEditPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 480595181098074273, guid: f939d5a2343906c4381291ecb459f379,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 480595181098074272, guid: f939d5a2343906c4381291ecb459f379,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -548,6 +539,16 @@ PrefabInstance:
     - target: {fileID: 480595181098074272, guid: f939d5a2343906c4381291ecb459f379,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 480595181098074273, guid: f939d5a2343906c4381291ecb459f379,
+        type: 3}
+      propertyPath: m_Name
+      value: BotEditPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 480595181098074273, guid: f939d5a2343906c4381291ecb459f379,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

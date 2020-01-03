@@ -85,4 +85,24 @@ public class GetEntity : Instruction
         }
         return target;
     }
+
+    public override Vector2 instructionToPosition(ProcessContext context)
+    {
+        Entity entity = instructionToEntity(context);
+        if (entity)
+        {
+            return entity.transform.position;
+        }
+        return base.instructionToPosition(context);
+    }
+
+    public override Vector2 instructionToDirection(ProcessContext context)
+    {
+        Entity entity = instructionToEntity(context);
+        if (entity)
+        {
+            return entity.transform.up;
+        }
+        return base.instructionToPosition(context);
+    }
 }

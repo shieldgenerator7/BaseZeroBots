@@ -15,9 +15,10 @@ MonoBehaviour:
   symbol: {fileID: 21300000, guid: 2822143d31f83e74bb160469055113fc, type: 3}
   name: GetSelf
   parameters: 
+  parameterSemantic: 
   keyCode: 105
   lifeInstruction: 1
   command: 0
-  returnTypes: 05000000
+  returnTypes: 050000000300000004000000
   option: 2
   entityType: 0

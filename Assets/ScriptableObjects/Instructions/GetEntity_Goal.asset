@@ -15,9 +15,10 @@ MonoBehaviour:
   symbol: {fileID: 21300000, guid: cc834cea99c65364b896149f60f696e6, type: 3}
   name: GetEntity_Goal
   parameters: 
+  parameterSemantic: 
   keyCode: 103
   lifeInstruction: 1
   command: 1
-  returnTypes: 05000000
+  returnTypes: 050000000300000004000000
   option: 0
   entityType: 2
